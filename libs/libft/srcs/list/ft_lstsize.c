@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivierroy <olivierroy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:48:04 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/09/12 22:15:26 by olivierroy       ###   ########.fr       */
+/*   Updated: 2023/06/15 12:35:20 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-int	ft_lstsize(t_tokens *lst)
+int	ft_lstsize(t_list *lst)
 {
-	int			i;
-	t_tokens	*ptr;
+	int		i;
+	t_list	*ptr;
 
 	if (!lst)
 		return (0);

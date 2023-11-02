@@ -6,7 +6,7 @@
 #    By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 13:45:36 by zvandeven         #+#    #+#              #
-#    Updated: 2023/09/28 11:11:40 by zvan-de-         ###   ########.fr        #
+#    Updated: 2023/11/02 15:24:34 by zvan-de-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,6 +141,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
+	@echo "\n";
 	
 clean:
 	@rm -rf $(OBJS) $(OBJS_PATH)

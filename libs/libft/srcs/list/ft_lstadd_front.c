@@ -6,13 +6,13 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:18:50 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/09/08 12:34:57 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:35:03 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-void	ft_lstadd_front(t_tokens **lst, t_tokens *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst)
 		return ;

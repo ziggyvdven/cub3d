@@ -6,7 +6,7 @@
 #    By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 13:45:36 by zvandeven         #+#    #+#              #
-#    Updated: 2023/11/02 14:43:15 by zvan-de-         ###   ########.fr        #
+#    Updated: 2023/11/02 15:22:38 by zvan-de-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ define update_progress
     $(if $(TOTAL), \
         $(eval PERCENT=$(shell echo $$(($(CURR) * 100 / $(TOTAL))))) \
     )
-    @printf "\r\\033[K$(B)Minishell: $(RT) $(PERCENT)%% ["
+    @printf "\r\\033[K$(B)Cub3D: $(RT) $(PERCENT)%% ["
     @for i in `seq 1 $(PERCENT)`; do \
         printf "$(G)=$(RT)"; \
     done
@@ -101,8 +101,8 @@ all: $(HEAD) libft libmlx $(NAME)
 libmlx:
 	@if [ ! -d "$(LIBMLX)" ]; then \
         git -C ./libs clone https://github.com/codam-coding-college/MLX42.git; \
+		cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4; \
     fi
-	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4; \
 
 $(NAME): $(OBJS_PATH) $(OBJS) $(LIBFT)
 	@$(CC)  $(CFLAGS) -o $@ $(OBJS) $(LIBS) $(HEADERS)
@@ -132,16 +132,17 @@ clean:
 	@rm -rf $(OBJS) $(OBJS_PATH)
 	@rm -rf $(OBJS_BONUS) $(OBJS_B_PATH)
 	@$(MAKE) -C $(LIBFT) clean
+	@rm -rf ./libs/MLX42
+	@rm -rf $(LIBMLX)/build
 	@echo "$(R)Files succesfully cleaned 🗑$(RT)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(RM) $(NAME_BONUS)
 	@$(MAKE) -C $(LIBFT) fclean
 
 re: fclean all
 
-.PHONY:		all, clean, fclean, re, libmlx
+.PHONY:		all, clean, fclean, brew, cmake, libft, re, libmlx
 
 # VALGRIND #
 

@@ -6,22 +6,22 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:55:05 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/09/08 12:51:53 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:35:16 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-t_tokens	*ft_lstnew(t_data *data)
+t_list	*ft_lstnew(void *content)
 {
-	t_tokens	*new;
+	t_list	*next;
 
-	new = (t_tokens *)malloc(sizeof(t_tokens));
-	if (!(new))
+	next = (t_list *)malloc(sizeof(t_list));
+	if (!(next))
 		return (NULL);
-	new->data = data;
-	new->next = NULL;
-	return (new);
+	next->content = content;
+	next->next = NULL;
+	return (next);
 }
 
 // int main(void)
