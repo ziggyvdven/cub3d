@@ -27,6 +27,8 @@
 *.so
 *.so.*
 *.dylib
+*.DS_Store
+*.vscode
 
 # Executables
 *.exe

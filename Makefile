@@ -6,7 +6,7 @@
 #    By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 13:45:36 by zvandeven         #+#    #+#              #
-#    Updated: 2023/11/02 15:22:38 by zvan-de-         ###   ########.fr        #
+#    Updated: 2023/11/02 15:32:32 by zvan-de-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ OBJS			= $(patsubst $(SRCS_PATH)%.c, $(OBJS_PATH)%.o, $(SRCS_FILES))
 # Sources
 SRCS_PATH		= srcs/
 SRCS			= $(addprefix $(SRCS_PATH), $(SRCS_FILES))
+GLFW			= $(shell brew --prefix glfw)
 
 # Includes
 HEADERS			= -I ./include -I $(LIBMLX)/include -I $(LIBFT)/include
@@ -63,7 +64,7 @@ HEADERS			= -I ./include -I $(LIBMLX)/include -I $(LIBFT)/include
 # library and source files
 LIBFT			= ./libs/libft
 LIBMLX  		= ./libs/MLX42
-LIBS			= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+LIBS			= $(LIBFT)/libft.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L"$(GLFW)/lib/" -pthread -lm
 SRCS_FILES		= $(wildcard $(SRCS_PATH)*.c)
 
 # Progress bar variables
