@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 14:33:26 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:13:33 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void	ft_raycaster(void *param)
 	int		x;
 	int		side;
 	int		colour;
+	mlx_t	*mlx;
 
 	x = -1;
 	side = 0;
-	(void)param;
+	mlx = param;
 	empty_img_buffer(data()->buf);
+	ft_ctrls(mlx);
 	while (++x < SCREENWIDTH)
 	{
 		calc_ray_dir(x);

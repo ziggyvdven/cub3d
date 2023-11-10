@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 14:42:23 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:12:31 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,30 @@ int	set_colour(int mapx, int mapy, int side)
 {
 	int	colour;
 
-	// printf("mapx = %d mapy = %d\n", mapx, mapy);
 	if (side == 1)
 	{
 		if (pos()->y >= mapy)
-		 	colour = get_rgba(255, 0, 0, 255);
+			colour = get_rgba(255, 82, 63, 255);
 		if (pos()->y <= mapy)
-			colour = get_rgba(0, 0, 225, 255);
+			colour = get_rgba(225, 109, 63, 255);
 	}
 	if (side == 0)
 	{
 		if (pos()->x >= mapx)
-		 colour = get_rgba(225, 165, 0, 255);
+			colour = get_rgba(225, 109, 63, 255);
 		if (pos()->x <= mapx)
-			colour = get_rgba(106, 90, 205, 255);
+			colour = get_rgba(255, 82, 63, 255);
 	}
+	if (wm()->map[mapy][mapx] == 5)
+		colour = get_rgba(0, 255, 0, 255);
+	if (wm()->map[mapy][mapx] == 3)
+		colour = get_rgba(0, 0, 255, 255);
 	if (side == 0) 
-		colour = div_rgba(colour);
+		colour = math_rgba(colour, 2, DIV);
 	return (colour);
 }
 
-void	draw_walls(int	drawstart, int drawend, int x, int colour)
+void	draw_walls(int drawstart, int drawend, int x, int colour)
 {
 	if (drawstart <= drawend)
 	{

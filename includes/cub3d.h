@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/08 20:22:21 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:59:53 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@
 # define SOUTH			603
 # define WEST			604
 
+# define UP				611
+# define DOWN			612
+# define LEFT			613
+# define RIGHT			614
+
+# define DIV			701
+# define ADD			702
+# define SUB			703
 
 typedef struct s_pos
 {
@@ -52,6 +60,16 @@ typedef struct s_plane
 	double	x;
 	double	y;
 }	t_plane;
+
+typedef struct s_ctrls
+{
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+	bool	a;
+	bool	d;
+}	t_ctrls;
 
 typedef struct s_worldmap
 {
@@ -112,17 +130,18 @@ int				get_rgba(int r, int g, int b, int a);
 int				get_r(int rgba);
 int				get_g(int rgba);
 int				get_b(int rgba);
-int				div_rgba(int color);
+int				math_rgba(int color, int div, int operator);
 void			calc_wall_height(int side);
 int				set_colour(int mapx, int mapy, int side);
-void			draw_walls(int	drawstart, int drawend, int x, int colour);
+void			draw_walls(int drawstart, int drawend, int x, int colour);
 
 /*EXEC*************************************************************************/
 void			ft_raycaster(void *param);
 void			ft_moves(mlx_key_data_t keydata, void *param);
+void			ft_ctrls(void *param);
 
 /*UTILS************************************************************************/
-int				get_rgba(int r, int g, int b, int a);
+void			set_direction(int d);
 
 /*STRUCTS**********************************************************************/
 t_pos			*pos(void);

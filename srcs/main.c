@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/09 16:51:48 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:11:03 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int32_t	main(int argc, char **argv)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "cub3D", true);
 	data()->mlx = mlx;
-	mlx_loop_hook(mlx, &ft_raycaster, NULL);
+	mlx_loop_hook(mlx, &ft_raycaster, mlx);
 	create_img_buffer(mlx);
 	mlx_key_hook(mlx, &ft_moves, mlx);
 	mlx_loop(mlx);
