@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/09 16:58:37 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:33:26 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ft_raycaster(void *param)
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
 		calc_wall_height(side);
 		colour = set_colour(ray()->mapx, ray()->mapy, side);
-		draw_walls(ray()->drawstart, ray()->drawend, SCREENWIDTH - x, colour);
+		draw_walls(ray()->drawstart,
+			ray()->drawend, SCREENWIDTH - x - 1, colour);
 	}
 }

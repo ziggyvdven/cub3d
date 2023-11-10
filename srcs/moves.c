@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:09:08 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 14:20:46 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:59:22 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void	ft_move(double ms, int direction)
 {
 	if (direction == 1)
 	{
-		if (wm()->map[(int)pos()->y]
-			[(int)pos()->x + (int)dir()->x * (int)ms] == false)
-			pos()->x += dir()->x * ms;
-		if (wm()->map[(int)pos()->y + (int)dir()->y * (int)ms]
+		if (wm()->map[(int)(pos()->y + dir()->y)]
 			[(int)pos()->x] == false)
 			pos()->y += dir()->y * ms;
+		if (wm()->map[(int)pos()->y]
+			[(int)(pos()->x + dir()->x)] == false)
+			pos()->x += dir()->x * ms;
 	}
 	if (direction == 0)
 	{
 		if (wm()->map[(int)pos()->y]
-			[(int)pos()->x - (int)dir()->x * (int)ms] == false)
+			[(int)(pos()->x - dir()->x)] == false)
 			pos()->x -= dir()->x * ms;
-		if (wm()->map[(int)pos()->y - (int)dir()->y * (int)ms]
+		if (wm()->map[(int)(pos()->y - dir()->y)]
 			[(int)pos()->x] == false)
 			pos()->y -= dir()->y * ms;
 	}
@@ -54,7 +54,7 @@ void	ft_moves(mlx_key_data_t keydata, void *param)
 	mlx_t	*mlx;
 
 	mlx = param;
-	movespeed = mlx->delta_time * 40.0;
+	movespeed = mlx->delta_time * 20.0;
 	rotspeed = mlx->delta_time * 10.0;
 	ft_overlay(mlx);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)

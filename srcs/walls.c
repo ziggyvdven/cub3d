@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/09 16:28:41 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/10 14:42:23 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	set_colour(int mapx, int mapy, int side)
 {
 	int	colour;
 
-	printf("mapx = %d mapy = %d\n", mapx, mapy);
+	// printf("mapx = %d mapy = %d\n", mapx, mapy);
 	if (side == 1)
 	{
 		if (pos()->y >= mapy)
