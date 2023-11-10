@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:55:11 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/08 19:17:56 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:00:40 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ t_overlay	*overlay(void)
 
 	return (&overlay);
 }
+
 void	ft_overlay_entry(mlx_t *mlx, mlx_image_t *img, char *str)
 {
+	mlx_image_t	*posi;
+
 	mlx_delete_image(mlx, img);
-	overlay()->pos = mlx_put_string(mlx, str, 1000, 10);
+	posi = mlx_put_string(mlx, str, 1000, 10);
+	overlay()->pos = posi;
 	free (str);
 }
 

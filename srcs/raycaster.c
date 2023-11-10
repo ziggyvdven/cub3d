@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/08 20:30:29 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:58:37 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,16 @@ int	dda(double deltax, double deltay, int stepx, int stepy)
 			ray()->mapy += stepy;
 			side = 1;
 		}
-		if (wm()->map[ray()->mapx][ray()->mapy] > 0)
+		if (wm()->map[ray()->mapy][ray()->mapx] > 0)
 			hit = 1;
 	}
 	return (side);
 }
 
-
 void	ft_raycaster(void *param)
 {
 	int		x;
-	int 	side;
+	int		side;
 	int		colour;
 
 	x = -1;
@@ -101,6 +100,6 @@ void	ft_raycaster(void *param)
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
 		calc_wall_height(side);
 		colour = set_colour(ray()->mapx, ray()->mapy, side);
-		draw_walls(ray()->drawstart, ray()->drawend, x, colour);
+		draw_walls(ray()->drawstart, ray()->drawend, SCREENWIDTH - x, colour);
 	}
 }

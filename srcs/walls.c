@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/08 20:47:45 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/09 16:28:41 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,22 @@ int	set_colour(int mapx, int mapy, int side)
 {
 	int	colour;
 
-	if (wm()->map[mapx][mapy] == 1 && dir()->x < dir()->y && plane()->x < plane()->y)
-		colour = get_rgba(255, 0, 0, 255);
-	else if (wm()->map[mapx][mapy] == 1 && dir()->x > dir()->y && plane()->x > plane()->y)
-		colour = get_rgba(0, 255, 0, 255);
-	else if (wm()->map[mapx][mapy] == 1 && dir()->x > dir()->y && plane()->x < plane()->y)
-		colour = get_rgba(0, 0, 255, 255);
-	else if (wm()->map[mapx][mapy] == 1 && dir()->x < dir()->y && plane()->x < plane()->y)
-		colour = get_rgba(106, 90, 205, 255);
-	if (wm()->map[mapx][mapy] == 5)
-		colour = get_rgba(255, 255, 0, 255);
-	if (side == 1) 
+	printf("mapx = %d mapy = %d\n", mapx, mapy);
+	if (side == 1)
+	{
+		if (pos()->y >= mapy)
+		 	colour = get_rgba(255, 0, 0, 255);
+		if (pos()->y <= mapy)
+			colour = get_rgba(0, 0, 225, 255);
+	}
+	if (side == 0)
+	{
+		if (pos()->x >= mapx)
+		 colour = get_rgba(225, 165, 0, 255);
+		if (pos()->x <= mapx)
+			colour = get_rgba(106, 90, 205, 255);
+	}
+	if (side == 0) 
 		colour = div_rgba(colour);
 	return (colour);
 }
