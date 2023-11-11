@@ -14,8 +14,8 @@
 
 int32_t	main(int argc, char **argv)
 {
-	(void)argv;
 	if (argc != 2)
-		return (1);
+		ft_error_message(E_ARG);
+	ft_parsing(argv[1]);
 	return (0);
 }
