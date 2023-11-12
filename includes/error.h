@@ -9,7 +9,7 @@
 # define E_TEXTURE "The texture format is not valid.\n"
 # define E_COLOR "There is something wrong with the color values.\n"
 # define E_MISSTEXT "Missing or multiple texture or color.\n"
-# define E_MISSPLAYER "Missing player in the map.\n"
+# define E_MISSPLAYER "Missing or multiple player in the map.\n"
 # define E_MAX "You're kind of exagerating here.\n" //To.do check if we need to check the max
 
 #endif

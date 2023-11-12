@@ -52,7 +52,7 @@ void	ft_init_map_parse(t_map_parse *map_parse)
 	map_parse->EA = 0;
 	map_parse->F = 0;
 	map_parse->C = 0;
-	map_parse->player = FALSE;
+	map_parse->player = 0;
 	map_parse->lastidentline = 0;
 }
 
@@ -65,4 +65,6 @@ void	ft_parsing(char *map)
 		ft_error_message(E_FILE);
 	ft_read_map(&map_parse, map);
 	ft_validate_map(&map_parse);
+	ft_print_array(map_parse.map);
+	printf("\n\n\n");
 }

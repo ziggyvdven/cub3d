@@ -15,15 +15,6 @@ bool	ft_check_colorcode(int red, int green, int blue)
 	else
 		return (FALSE);
 }
-//debug
-void	ft_print_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-		printf("%s\n", array[i++]);
-}
 
 bool	ft_check_color(char *line, char *ident, int *identflag)
 {

@@ -41,7 +41,7 @@ typedef struct s_map_parse {
 	int		SO;
 	int		WE;
 	int		EA;
-	bool	player;
+	int		player;
 	int		F;
 	int		C;
 	bool	floodfill;
@@ -67,7 +67,8 @@ bool	ft_check_color(char *line, char *ident, int *identflag);
 int		ft_all_identflags(t_map_parse *map_parse);
 bool	ft_check_colorcode(int red, int green, int blue);
 void	ft_check_map(t_map_parse *map_parse);
-bool	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p);
+void	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p);
+void	ft_prepare_map(t_map_parse *map_parse);
 
 /*ERROR************************************************************************/
 
@@ -80,5 +81,10 @@ void	ft_error_message(char *str);
 int		ft_array_len(char **array);
 void	ft_trim_line(char *line);
 int		ft_strchrpos(const char *s, char c);
+char	*ft_str_replace(char *str, char *to_replace, char *replace_with);
+void	ft_replace_algo(char **str, char *to_replace,
+			char *replace_with, int i);
+char	*ft_join_three(char *s1, char *s2, char *s3);
+void	ft_print_array(char **array); //debug
 
 #endif
