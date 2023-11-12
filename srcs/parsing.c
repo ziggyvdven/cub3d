@@ -46,13 +46,14 @@ void	ft_read_map(t_map_parse *map_parse, char *map)
 
 void	ft_init_map_parse(t_map_parse *map_parse)
 {
-	map_parse->NO = FALSE;
-	map_parse->SO = FALSE;
-	map_parse->WE = FALSE;
-	map_parse->EA = FALSE;
-	map_parse->F = FALSE;
-	map_parse->C = FALSE;
+	map_parse->NO = 0;
+	map_parse->SO = 0;
+	map_parse->WE = 0;
+	map_parse->EA = 0;
+	map_parse->F = 0;
+	map_parse->C = 0;
 	map_parse->player = FALSE;
+	map_parse->lastidentline = 0;
 }
 
 void	ft_parsing(char *map)

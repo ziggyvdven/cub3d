@@ -1,18 +1,14 @@
-EA ./textures/bush.xpm42
-NO ./textures/floor.xpm42
-
-WE ./textures/acorn.xpm42
-
-jdfkhdsfjksd
-
-SO ./textures/tree.xpm42
-
-C 255 , 045 , 45
-F 0,180,50
-
-
+NO./textures/floor.xpm42
+lknjbhvgcffcgv
+SO./textures/tree.xpm42
+WE./textures/acorn.xpm42
+njbhvggv
+EA./textures/bush.xpm42
+C255,045,45
+F0,180,50
+lmknjbhvgfcv
 0111111011111111
-010000111000N001
+01000011100E0001
 0100000000111111
 0111111010000001
         11111111
