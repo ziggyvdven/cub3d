@@ -48,6 +48,12 @@ typedef struct s_map_parse {
 	int		player_x;
 	int		player_y;
 	int		lastidentline;
+	char	*texture_NO;
+	char	*texture_SO;
+	char	*texture_WE;
+	char	*texture_EA;
+	int		floor_color;
+	int		ceiling_color;
 } t_map_parse;
 
 /*PARSING**********************************************************************/
@@ -62,8 +68,9 @@ void	ft_validate_map(t_map_parse *map_parse);
 bool	ft_is_identifier(char *line);
 bool	ft_check_textureformat(char *map);
 void	ft_check_identifiers(t_map_parse *map_parse, char *line, int linepos);
-bool	ft_check_identifier(char *line, char *ident, int *identflag);
-bool	ft_check_color(char *line, char *ident, int *identflag);
+bool	ft_check_identifier(char **texture, char *line, char *ident,
+			int *identflag);
+bool	ft_check_color(int *color, char *line, char *ident, int *identflag);
 int		ft_all_identflags(t_map_parse *map_parse);
 bool	ft_check_colorcode(int red, int green, int blue);
 void	ft_check_map(t_map_parse *map_parse);
@@ -86,5 +93,6 @@ void	ft_replace_algo(char **str, char *to_replace,
 			char *replace_with, int i);
 char	*ft_join_three(char *s1, char *s2, char *s3);
 void	ft_print_array(char **array); //debug
+int		get_rgba(int r, int g, int b, int a);
 
 #endif

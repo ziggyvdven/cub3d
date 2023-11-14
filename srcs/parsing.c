@@ -54,6 +54,12 @@ void	ft_init_map_parse(t_map_parse *map_parse)
 	map_parse->C = 0;
 	map_parse->player = 0;
 	map_parse->lastidentline = 0;
+	map_parse->texture_NO = NULL;
+	map_parse->texture_SO = NULL;
+	map_parse->texture_WE = NULL;
+	map_parse->texture_EA = NULL;
+	map_parse->floor_color = 0;
+	map_parse->ceiling_color = 0;
 }
 
 void	ft_parsing(char *map)

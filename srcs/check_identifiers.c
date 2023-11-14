@@ -16,7 +16,7 @@ bool	ft_check_colorcode(int red, int green, int blue)
 		return (FALSE);
 }
 
-bool	ft_check_color(char *line, char *ident, int *identflag)
+bool	ft_check_color(int *color, char *line, char *ident, int *identflag)
 {
 	char	**colorcodes;
 	int		red;
@@ -35,6 +35,7 @@ bool	ft_check_color(char *line, char *ident, int *identflag)
 			if (ft_check_colorcode(red, green, blue) != TRUE)
 				ft_error_message(E_COLOR);
 			(*identflag)++;
+			*color = get_rgba(red, green, blue, 255);
 			return (TRUE);
 		}
 		else
@@ -43,7 +44,8 @@ bool	ft_check_color(char *line, char *ident, int *identflag)
 	return (FALSE);
 }
 
-bool	ft_check_identifier(char *line, char *ident, int *identflag)
+bool	ft_check_identifier(char **texture, char *line, char *ident,
+			int *identflag)
 {
 	if (ft_strncmp(line, ident, 2) == 0)
 	{
@@ -51,6 +53,7 @@ bool	ft_check_identifier(char *line, char *ident, int *identflag)
 			|| (ft_check_file(&line[2]) != TRUE))
 			ft_error_message(E_TEXTUREFILE);
 		(*identflag)++;
+		*texture = &line[2];
 		return (TRUE);
 	}
 	return (FALSE);
@@ -58,17 +61,17 @@ bool	ft_check_identifier(char *line, char *ident, int *identflag)
 
 void	ft_check_identifiers(t_map_parse *map_parse, char *line, int linepos)
 {
-	if (ft_check_identifier(line, "NO", &map_parse->NO) == TRUE)
+	if (ft_check_identifier(&map_parse->texture_NO, line, "NO", &map_parse->NO))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(line, "SO", &map_parse->SO) == TRUE)
+	if (ft_check_identifier(&map_parse->texture_SO, line, "SO", &map_parse->SO))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(line, "WE", &map_parse->WE) == TRUE)
+	if (ft_check_identifier(&map_parse->texture_WE, line, "WE", &map_parse->WE))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(line, "EA", &map_parse->EA) == TRUE)
+	if (ft_check_identifier(&map_parse->texture_EA, line, "EA", &map_parse->EA))
 		map_parse->lastidentline = linepos;
-	if (ft_check_color(line, "C", &map_parse->C) == TRUE)
+	if (ft_check_color(&map_parse->ceiling_color, line, "C", &map_parse->C))
 		map_parse->lastidentline = linepos;
-	if (ft_check_color(line, "F", &map_parse->F) == TRUE)
+	if (ft_check_color(&map_parse->floor_color, line, "F", &map_parse->F))
 		map_parse->lastidentline = linepos;
 }
 

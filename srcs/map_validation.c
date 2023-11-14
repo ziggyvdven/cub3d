@@ -82,6 +82,7 @@ void	ft_validate_map(t_map_parse *map_parse)
 		ft_check_identifiers(map_parse, map_parse->map[i], i);
 		i++;
 	}
+	printf("floor: %x\n", map_parse->floor_color);
 	if (ft_all_identflags(map_parse) != 6)
 		ft_error_message(E_MISSTEXT);
 	ft_prepare_map(map_parse);
