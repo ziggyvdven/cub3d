@@ -1,0 +1,157 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    backup.txt                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#              #
+#    Updated: 2023/11/08 17:26:36 by zvan-de-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#include "../includes/cub3d.h"
+
+//calculate ray position and direction
+void	calc_ray_dir(int x)
+{
+	double	camx;
+	
+	camx = 2 * x / (double)SCREENWIDTH - 1;
+	ray()->raydirx = dir()->x + plane()->x * camx;
+	if (ray()->raydirx == 0)
+		ray()->deltadistx = 1e30;
+	else
+		ray()->deltadistx = fabs(1 / ray()->raydirx);
+	ray()->raydiry = dir()->y + plane()->y * camx;
+	if (ray()->raydiry == 0)
+		ray()->deltadisty = 1e30;
+	else
+		ray()->deltadisty = fabs(1 / ray()->raydiry);
+}
+
+void	calc_step(void)
+{
+	if (ray()->raydirx < 0)
+		ray()->stepx = -1;
+	else
+		ray()->stepx = 1;
+	if (ray()->raydiry < 0)
+		ray()->stepy = -1;
+	else
+		ray()->stepy = 1;
+}
+
+void	calc_sidedist(int posx, int posy)
+{
+	ray()->mapx = (int)pos()->x;
+	ray()->mapy = (int)pos()->y;
+	
+	if (ray()->raydirx < 0)
+		ray()->sidedistx = (posx -ray()->mapx) * ray()->deltadistx;
+	else
+		ray()->sidedistx = (ray()->mapx + 1.0 - posx) * ray()->deltadistx;
+	if (ray()->raydiry < 0)
+		ray()->sidedisty = (posy - ray()->mapy) * ray()->deltadisty;
+	else
+		ray()->sidedisty = (ray()->mapy + 1.0 - posy) * ray()->deltadisty;
+}
+
+void	dda(double deltadistx, double deltadisty, int stepx, int stepy)
+{
+	int		hit;
+	
+	hit = 0;
+	while (hit == 0)
+	{
+		if (ray()->sidedistx < ray()->sidedisty)
+		{
+			ray()->sidedistx += deltadistx;
+			ray()->mapx += stepx;
+			ray()->side = 0;
+		}
+		else
+		{
+			ray()->sidedisty += deltadisty;
+			ray()->mapy += stepy;
+			ray()->side = 1;
+		}
+		if (wm()->map[ray()->mapx][ray()->mapy] > 0)
+			hit = 1;
+	}
+}
+
+void	ft_raycaster(void *param)
+{
+	int		x;
+
+	x = -1;
+	(void)param;
+	empty_img_buffer(data()->buf);
+	while (++x < SCREENWIDTH)
+	{
+		calc_ray_dir(x);
+		calc_step();
+		calc_sidedist(pos()->x, pos()->y);
+		dda(ray()->deltadistx, ray()->deltadisty, ray()->stepx, ray()->stepy);
+		if (ray()->side == 0)
+			ray()->perpwalldist = (ray()->sidedistx - ray()->deltadistx);
+		else
+			ray()->perpwalldist = (ray()->sidedisty - ray()->deltadisty);
+		ray()->lineheight = (int)(SCREENHEIGHT / ray()->perpwalldist);
+		ray()->drawstart = -ray()->lineheight / 2 + SCREENHEIGHT / 2;
+		if (ray()->drawstart < 0)
+			ray()->drawstart = 0;
+		ray()->drawend = ray()->lineheight / 2 + SCREENHEIGHT / 2;
+		if (ray()->drawend >= SCREENHEIGHT)
+			ray()->drawend = SCREENHEIGHT - 1;
+		printf("start = %d end = %d x = %d lineheight = %d\n", ray()->drawstart, ray()->drawend, x, ray()->lineheight);
+		if (wm()->map[ray()->mapx][ray()->mapy] == 1)
+			ray()->color = get_rgba(255, 0, 0, 255);
+		if (wm()->map[ray()->mapx][ray()->mapy] == 2)
+			ray()->color = get_rgba(0, 255, 0, 255);
+		if (wm()->map[ray()->mapx][ray()->mapy] == 3)
+			ray()->color = get_rgba(0, 0, 255, 255);
+		if (wm()->map[ray()->mapx][ray()->mapy] == 4)
+			ray()->color = get_rgba(106, 90, 205, 255);
+		if (wm()->map[ray()->mapx][ray()->mapy] == 5)
+			ray()->color = get_rgba(255, 255, 0, 255);
+		if (ray()->side == 1) 
+			ray()->color = div_rgba(ray()->color);
+		if (ray()->drawstart <= ray()->drawend)
+		{
+    		while (ray()->drawstart < ray()->drawend)
+			{
+				mlx_put_pixel(data()->buf, x, ray()->drawstart, ray()->color);
+				ray()->drawstart++;
+			}
+		}
+	}
+}
+
+
+void	calc_step()
+{
+	ray()->mapx = (int)pos()->x;
+	ray()->mapy = (int)pos()->y;
+	if (ray()->raydirx < 0)
+	{
+		ray()->stepx = -1;
+		ray()->sidedistx = (pos()->x -ray()->mapx) * ray()->deltadistx;
+	}
+	else
+	{
+		ray()->stepx = 1;
+		ray()->sidedistx = (ray()->mapx + 1.0 - pos()->x) * ray()->deltadistx;
+	}
+	if (ray()->raydiry < 0)
+	{
+		ray()->stepy = -1;
+		ray()->sidedisty = (pos()->y - ray()->mapy) * ray()->deltadisty;
+	}
+	else
+	{
+		ray()->stepy = 1;
+		ray()->sidedisty = (ray()->mapy + 1.0 - pos()->y) * ray()->deltadisty;
+	}
+}
