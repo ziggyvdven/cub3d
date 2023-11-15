@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/15 11:14:02 by lfrank            #+#    #+#             */
+/*   Updated: 2023/11/15 11:22:09 by lfrank           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -46,18 +57,18 @@ void	ft_read_map(t_map_parse *map_parse, char *map)
 
 void	ft_init_map_parse(t_map_parse *map_parse)
 {
-	map_parse->NO = 0;
-	map_parse->SO = 0;
-	map_parse->WE = 0;
-	map_parse->EA = 0;
-	map_parse->F = 0;
-	map_parse->C = 0;
+	map_parse->no = 0;
+	map_parse->so = 0;
+	map_parse->we = 0;
+	map_parse->ea = 0;
+	map_parse->f = 0;
+	map_parse->c = 0;
 	map_parse->player = 0;
 	map_parse->lastidentline = 0;
-	map_parse->texture_NO = NULL;
-	map_parse->texture_SO = NULL;
-	map_parse->texture_WE = NULL;
-	map_parse->texture_EA = NULL;
+	map_parse->texture_no = NULL;
+	map_parse->texture_so = NULL;
+	map_parse->texture_we = NULL;
+	map_parse->texture_ea = NULL;
 	map_parse->floor_color = 0;
 	map_parse->ceiling_color = 0;
 	map_parse->exec_map = NULL;

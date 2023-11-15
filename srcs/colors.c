@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:00:44 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/08 17:06:00 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:11:19 by lfrank           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	get_rgba(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
+
 // Get the red channel.
 int	get_r(int rgba)
 {

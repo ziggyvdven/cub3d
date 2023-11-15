@@ -1,47 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_identifiers.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/15 11:05:07 by lfrank            #+#    #+#             */
+/*   Updated: 2023/11/15 11:24:00 by lfrank           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 int	ft_all_identflags(t_map_parse *map_parse)
 {
-	return (map_parse->NO + map_parse->SO + map_parse->WE + map_parse->EA
-		+ map_parse->F + map_parse->C);
-}
-
-bool	ft_check_colorcode(int red, int green, int blue)
-{
-	if (red >= 0 && red <= 255 && green >= 0 && green <= 255 && blue >= 0
-		&& blue <= 255)
-			return (TRUE);
-	else
-		return (FALSE);
-}
-
-bool	ft_check_color(int *color, char *line, char *ident, int *identflag)
-{
-	char	**colorcodes;
-	int		red;
-	int		green;
-	int		blue;
-
-	if (ft_strncmp(line, ident, 1) == 0)
-	{
-		colorcodes = ft_split(++line, ',');
-		if (ft_array_len(colorcodes) == 3)
-		{
-			red = ft_atoi(colorcodes[0]);
-			green = ft_atoi(colorcodes[1]);
-			blue = ft_atoi(colorcodes[2]);
-			ft_free_ar(colorcodes);
-			if (ft_check_colorcode(red, green, blue) != TRUE)
-				ft_error_message(E_COLOR);
-			(*identflag)++;
-			*color = get_rgba(red, green, blue, 255);
-			return (TRUE);
-		}
-		else
-			ft_free_ar(colorcodes);
-	}
-	return (FALSE);
+	return (map_parse->no + map_parse->so + map_parse->we + map_parse->ea
+		+ map_parse->f + map_parse->c);
 }
 
 bool	ft_check_identifier(char **texture, char *line, char *ident,
@@ -61,17 +35,17 @@ bool	ft_check_identifier(char **texture, char *line, char *ident,
 
 void	ft_check_identifiers(t_map_parse *map_parse, char *line, int linepos)
 {
-	if (ft_check_identifier(&map_parse->texture_NO, line, "NO", &map_parse->NO))
+	if (ft_check_identifier(&map_parse->texture_no, line, "NO", &map_parse->no))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(&map_parse->texture_SO, line, "SO", &map_parse->SO))
+	if (ft_check_identifier(&map_parse->texture_so, line, "SO", &map_parse->so))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(&map_parse->texture_WE, line, "WE", &map_parse->WE))
+	if (ft_check_identifier(&map_parse->texture_we, line, "WE", &map_parse->we))
 		map_parse->lastidentline = linepos;
-	if (ft_check_identifier(&map_parse->texture_EA, line, "EA", &map_parse->EA))
+	if (ft_check_identifier(&map_parse->texture_ea, line, "EA", &map_parse->ea))
 		map_parse->lastidentline = linepos;
-	if (ft_check_color(&map_parse->ceiling_color, line, "C", &map_parse->C))
+	if (ft_check_color(&map_parse->ceiling_color, line, "C", &map_parse->c))
 		map_parse->lastidentline = linepos;
-	if (ft_check_color(&map_parse->floor_color, line, "F", &map_parse->F))
+	if (ft_check_color(&map_parse->floor_color, line, "F", &map_parse->f))
 		map_parse->lastidentline = linepos;
 }
 

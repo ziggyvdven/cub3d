@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/02 14:50:51 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/15 11:13:31 by lfrank           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int32_t	main(int argc, char **argv)
 {
-	t_map_parse map_parse;
+	t_map_parse	map_parse;
 
 	if (argc != 2)
 		ft_error_message(E_ARG);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/15 11:13:36 by lfrank            #+#    #+#             */
+/*   Updated: 2023/11/15 11:13:57 by lfrank           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
@@ -26,8 +37,8 @@ void	ft_floodfill(t_map_parse *map_parse, int x, int y)
 void	ft_prepare_map(t_map_parse *map_parse)
 {
 	int	map_size;
-	int i;
-	
+	int	i;
+
 	i = 0;
 	map_size = ft_array_len(map_parse->map);
 	while (map_size > map_parse->lastidentline)
@@ -40,7 +51,7 @@ void	ft_prepare_map(t_map_parse *map_parse)
 
 void	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p)
 {
-	int pos_x;
+	int	pos_x;
 
 	pos_x = ft_strchrpos(map_parse->map[map_size - 1], p);
 	if (pos_x != -1)
@@ -54,7 +65,7 @@ void	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p)
 void	ft_check_map(t_map_parse *map_parse)
 {
 	int	map_size;
-	
+
 	map_size = ft_array_len(map_parse->map);
 	while (map_size > map_parse->lastidentline)
 	{
