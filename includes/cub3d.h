@@ -6,7 +6,7 @@
 /*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 11:46:22 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/15 12:05:10 by lfrank           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,26 +210,27 @@ void		ft_convert_map(t_map_parse *map_parse);
 void		ft_error_message(char *str);
 
 /*MLX**************************************************************************/
-void			create_img_buffer(mlx_t *mlx);
-void			empty_img_buffer(void *param);
+void		create_img_buffer(mlx_t *mlx);
+void		empty_img_buffer(void *param);
 
 /*IMG**************************************************************************/
-void			create_background(mlx_t *mlx);
-void			create_img_buffer(mlx_t *mlx);
-void			empty_img_buffer(void *param);
-int				get_rgba(int r, int g, int b, int a);
-int				get_r(int rgba);
-int				get_g(int rgba);
-int				get_b(int rgba);
-int				math_rgba(int color, int div, int operator);
-void			calc_wall_height(int side);
-int				set_colour(int mapx, int mapy, int side);
-void			draw_walls(int drawstart, int drawend, int x, int colour);
+void		create_background(mlx_t *mlx);
+void		create_img_buffer(mlx_t *mlx);
+void		empty_img_buffer(void *param);
+int			get_rgba(int r, int g, int b, int a);
+int			get_r(int rgba);
+int			get_g(int rgba);
+int			get_b(int rgba);
+int			math_rgba(int color, int div, int operator);
+void		calc_wall_height(int side);
+int			set_colour(int mapx, int mapy, int side);
+void		draw_walls(int drawstart, int drawend, int x, int colour);
 
 /*EXEC*************************************************************************/
-void			ft_raycaster(void *param);
-void			ft_moves(mlx_key_data_t keydata, void *param);
-void			ft_ctrls(void *param);
+void		set_direction(int d);
+void		ft_raycaster(void *param);
+void		ft_moves(mlx_key_data_t keydata, void *param);
+void		ft_ctrls(void *param);
 
 /*UTILS************************************************************************/
 
@@ -241,14 +242,15 @@ void		ft_replace_algo(char **str, char *to_replace,
 				char *replace_with, int i);
 char		*ft_join_three(char *s1, char *s2, char *s3);
 int			get_rgba(int r, int g, int b, int a);
-void		ft_print_array(char **array); //debugt_pos			*pos(void);
-t_dir			*dir(void);
-t_plane			*plane(void);
-t_data			*data(void);
-t_worldmap		*wm(void);
-t_raycaster		*ray(void);
+void		ft_print_array(char **array); //debug
+t_pos		*pos(void);
+t_dir		*dir(void);
+t_plane		*plane(void);
+t_data		*data(void);
+t_worldmap	*wm(void);
+t_raycaster	*ray(void);
 
 
-void	ft_overlay(mlx_t *mlx);
+void		ft_overlay(mlx_t *mlx);
 
 #endif

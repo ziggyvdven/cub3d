@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:09:08 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 18:38:52 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/15 12:03:03 by lfrank           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_rotate(double rotspeed)
 
 void	ft_move(double ms, int direction)
 {
-	int teleport = 0;
-	
+	int	teleport = 0;
+
 	if (direction == UP)
 	{
 		printf("next spoty %d, next spots %d value = %d\n", (int)(pos()->y + dir()->y), (int)(pos()->x + dir()->x), wm()->map[(int)(pos()->y + dir()->y)]
@@ -58,7 +58,7 @@ void	ft_move(double ms, int direction)
 			pos()->x += dir()->x * ms;
 			if (teleport)
 			{
-				pos()->x = 12;	
+				pos()->x = 12;
 				pos()->y = 23;
 				set_direction(NORTH);
 			}
