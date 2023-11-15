@@ -14,8 +14,12 @@
 
 int32_t	main(int argc, char **argv)
 {
+	t_map_parse map_parse;
+
 	if (argc != 2)
 		ft_error_message(E_ARG);
-	ft_parsing(argv[1]);
+	map_parse = ft_parsing(argv[1]);
+	ft_free_ar(map_parse.map);
+	ft_free_ar(map_parse.exec_map);
 	return (0);
 }

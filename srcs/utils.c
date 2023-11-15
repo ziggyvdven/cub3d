@@ -106,5 +106,5 @@ void	ft_print_array(char **array)
 
 	i = 0;
 	while (array[i])
-		printf("%s", array[i++]);
+		printf("%s\n", array[i++]);
 }

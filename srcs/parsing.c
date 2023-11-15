@@ -60,9 +60,10 @@ void	ft_init_map_parse(t_map_parse *map_parse)
 	map_parse->texture_EA = NULL;
 	map_parse->floor_color = 0;
 	map_parse->ceiling_color = 0;
+	map_parse->exec_map = NULL;
 }
 
-void	ft_parsing(char *map)
+t_map_parse	ft_parsing(char *map)
 {
 	t_map_parse	map_parse;
 
@@ -71,6 +72,6 @@ void	ft_parsing(char *map)
 		ft_error_message(E_FILE);
 	ft_read_map(&map_parse, map);
 	ft_validate_map(&map_parse);
-	ft_print_array(map_parse.map);
-	printf("\n\n\n");
+	ft_convert_map(&map_parse);
+	return (map_parse);
 }

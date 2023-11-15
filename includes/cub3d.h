@@ -37,6 +37,7 @@
 
 typedef struct s_map_parse {
 	char	**map;
+	char	**exec_map;
 	int		NO;
 	int		SO;
 	int		WE;
@@ -58,24 +59,25 @@ typedef struct s_map_parse {
 
 /*PARSING**********************************************************************/
 
-void	ft_parsing(char *map);
-bool	ft_check_format(char *map);
-bool	ft_check_file(char *file);
-void	ft_init_map_parse(t_map_parse *map_parse);
-void	ft_read_map(t_map_parse *map_parse, char *map);
-int		ft_get_map_size(char *map);
-void	ft_validate_map(t_map_parse *map_parse);
-bool	ft_is_identifier(char *line);
-bool	ft_check_textureformat(char *map);
-void	ft_check_identifiers(t_map_parse *map_parse, char *line, int linepos);
-bool	ft_check_identifier(char **texture, char *line, char *ident,
-			int *identflag);
-bool	ft_check_color(int *color, char *line, char *ident, int *identflag);
-int		ft_all_identflags(t_map_parse *map_parse);
-bool	ft_check_colorcode(int red, int green, int blue);
-void	ft_check_map(t_map_parse *map_parse);
-void	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p);
-void	ft_prepare_map(t_map_parse *map_parse);
+t_map_parse	ft_parsing(char *map);
+bool		ft_check_format(char *map);
+bool		ft_check_file(char *file);
+void		ft_init_map_parse(t_map_parse *map_parse);
+void		ft_read_map(t_map_parse *map_parse, char *map);
+int			ft_get_map_size(char *map);
+void		ft_validate_map(t_map_parse *map_parse);
+bool		ft_is_identifier(char *line);
+bool		ft_check_textureformat(char *map);
+void		ft_check_identifiers(t_map_parse *map_parse, char *line, int linepos);
+bool		ft_check_identifier(char **texture, char *line, char *ident,
+				int *identflag);
+bool		ft_check_color(int *color, char *line, char *ident, int *identflag);
+int			ft_all_identflags(t_map_parse *map_parse);
+bool		ft_check_colorcode(int red, int green, int blue);
+void		ft_check_map(t_map_parse *map_parse);
+void		ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p);
+void		ft_prepare_map(t_map_parse *map_parse);
+void 		ft_convert_map(t_map_parse *map_parse);
 
 /*ERROR************************************************************************/
 
