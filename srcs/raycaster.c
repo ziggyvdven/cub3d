@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 16:13:33 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/15 15:30:37 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	dda(double deltax, double deltay, int stepx, int stepy)
 			ray()->mapy += stepy;
 			side = 1;
 		}
-		if (wm()->map[ray()->mapy][ray()->mapx] > 0)
+		if (wm()->map[ray()->mapy][ray()->mapx] == '1')
 			hit = 1;
 	}
 	return (side);

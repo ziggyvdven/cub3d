@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:09:08 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 12:03:03 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/15 15:55:42 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,61 +34,61 @@ void	ft_rotate(double rotspeed)
 
 void	ft_move(double ms, int direction)
 {
-	int	teleport = 0;
+	// int	teleport = 0;
 
 	if (direction == UP)
 	{
-		printf("next spoty %d, next spots %d value = %d\n", (int)(pos()->y + dir()->y), (int)(pos()->x + dir()->x), wm()->map[(int)(pos()->y + dir()->y)]
-			[(int)(pos()->x + dir()->x)]);
-		if (wm()->map[(int)(pos()->y + dir()->y + 0.1f)]
-			[(int)pos()->x] == false)
+		// printf("next spoty %d, next spots %d value = %d\n", (int)(pos()->y + dir()->y), (int)(pos()->x + dir()->x), wm()->map[(int)(pos()->y + dir()->y)]
+		// 	[(int)(pos()->x + dir()->x)]);
+		if (wm()->map[(int)(pos()->y + dir()->y - 0.1f)]
+			[(int)pos()->x] == '0')
 			pos()->y += dir()->y * ms;
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x + dir()->x + 0.1f)] == false)
+			[(int)(pos()->x + dir()->x - 0.1f)] == '0')
 			pos()->x += dir()->x * ms;
-		if (wm()->map[(int)(pos()->y + dir()->y)]
-			[(int)(pos()->x)] == 5)
-		{
-			pos()->y += dir()->y * ms;
-			teleport = 1;
-		}
-		if (wm()->map[(int)(pos()->y)]
-			[(int)(pos()->x + dir()->x)] == 5)
-		{
-			pos()->x += dir()->x * ms;
-			if (teleport)
-			{
-				pos()->x = 12;
-				pos()->y = 23;
-				set_direction(NORTH);
-			}
-		}
+		// if (wm()->map[(int)(pos()->y + dir()->y)]
+		// 	[(int)(pos()->x)] == 5)
+		// {
+		// 	pos()->y += dir()->y * ms;
+		// 	teleport = 1;
+		// }
+		// if (wm()->map[(int)(pos()->y)]
+		// 	[(int)(pos()->x + dir()->x)] == 5)
+		// {
+		// 	pos()->x += dir()->x * ms;
+		// 	if (teleport)
+		// 	{
+		// 		pos()->x = 12;
+		// 		pos()->y = 23;
+		// 		set_direction(NORTH);
+		// 	}
+		// }
 	}
 	else if (direction == DOWN)
 	{
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x - dir()->x - 0.1f)] == false)
+			[(int)(pos()->x - dir()->x + 0.1f)] == '0')
 			pos()->x -= dir()->x * ms;
-		if (wm()->map[(int)(pos()->y - dir()->y - 0.1f)]
-			[(int)pos()->x] == false)
+		if (wm()->map[(int)(pos()->y - dir()->y + 0.1f)]
+			[(int)pos()->x] == '0')
 			pos()->y -= dir()->y * ms;
 	}
 	else if (direction == RIGHT)
 	{
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x - plane()->x - 0.1f)] == false)
+			[(int)(pos()->x - plane()->x + 0.1f)] == '0')
 			pos()->x -= plane()->x * ms;
-		if (wm()->map[(int)(pos()->y - plane()->y - 0.1f)]
-			[(int)pos()->x] == false)
+		if (wm()->map[(int)(pos()->y - plane()->y + 0.1f)]
+			[(int)pos()->x] == '0')
 			pos()->y -= plane()->y * ms;
 	}
 	else if (direction == LEFT)
 	{
 		if (wm()->map[(int)(pos()->y + plane()->y + 0.1f)]
-			[(int)pos()->x] == false)
+			[(int)pos()->x] == '0')
 			pos()->y += plane()->y * ms;
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x + plane()->x + 0.1f)] == false)
+			[(int)(pos()->x + plane()->x + 0.1f)] == '0')
 			pos()->x += plane()->x * ms;
 	}
 }
@@ -122,7 +122,7 @@ void	ft_moves(mlx_key_data_t keydata, void *param)
 	mlx_t	*mlx;
 
 	mlx = param;
-	// ft_overlay(mlx);
+	ft_overlay(mlx);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:00:44 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 11:49:03 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/16 13:11:08 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,28 @@ int	get_g(int rgba)
 int	get_b(int rgba)
 {
 	return ((rgba >> 8) & 0xFF);
+}
+
+int get_a(int rgba)
+{
+    return (rgba & 0xFF);
+}
+
+int	gradient(int color, int div, int operator)
+{
+	int	r;
+	int	g;
+	int	b;
+	int a;
+
+	r = get_r(color);
+	g = get_g(color);
+	b = get_b(color);
+	if (operator == ADD && get_a(color) != 255)
+		a = get_a(color) + div;
+	if (operator == SUB && get_a(color) != 0)
+		a = get_a(color) - div;
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 int	math_rgba(int color, int div, int operator)

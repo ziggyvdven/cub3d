@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 12:05:10 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/16 13:08:22 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@
 # include <math.h>
 
 /*MACROS***********************************************************************/
-
-# define TRUE 1
-# define FALSE 0
+# define TRUE 			1
+# define FALSE 			0
 
 # define WORD_EXP		102
 # define D_QUOTE_EXP	103
@@ -34,7 +33,24 @@
 # define MACRO			105
 # define WSPACE			106
 
-/*STRUCTS**********************************************************************/
+# define MAPWIDTH		24
+# define MAPHEIGHT		24
+# define SCREENWIDTH	1280
+# define SCREENHEIGHT	1024
+
+# define NORTH			601
+# define EAST			602
+# define SOUTH			603
+# define WEST			604
+
+# define UP				611
+# define DOWN			612
+# define LEFT			613
+# define RIGHT			614
+
+# define DIV			701
+# define ADD			702
+# define SUB			703
 
 typedef struct s_map_parse {
 	char	**map;
@@ -57,56 +73,6 @@ typedef struct s_map_parse {
 	int		floor_color;
 	int		ceiling_color;
 }	t_map_parse;
-
-/*PARSING**********************************************************************/
-
-t_map_parse	ft_parsing(char *map);
-bool		ft_check_format(char *map);
-bool		ft_check_file(char *file);
-void		ft_init_map_parse(t_map_parse *map_parse);
-void		ft_read_map(t_map_parse *map_parse, char *map);
-int			ft_get_map_size(char *map);
-void		ft_validate_map(t_map_parse *map_parse);
-bool		ft_is_identifier(char *line);
-bool		ft_check_textureformat(char *map);
-void		ft_check_identifiers(t_map_parse *map_parse, char *line,
-				int linepos);
-bool		ft_check_identifier(char **texture, char *line, char *ident,
-				int *identflag);
-bool		ft_check_color(int *color, char *line, char *ident, int *identflag);
-int			ft_all_identflags(t_map_parse *map_parse);
-bool		ft_check_colorcode(int red, int green, int blue);
-void		ft_check_map(t_map_parse *map_parse);
-void		ft_find_player_in_line(t_map_parse *map_parse, int map_size,
-				char p);
-void		ft_prepare_map(t_map_parse *map_parse);
-void		ft_convert_map(t_map_parse *map_parse);
-
-/*ERROR************************************************************************/
-
-void		ft_error_message(char *str);
-
-
-/*MACROS***********************************************************************/
-
-# define MAPWIDTH		24
-# define MAPHEIGHT		24
-# define SCREENWIDTH	1280
-# define SCREENHEIGHT	1024
-
-# define NORTH			601
-# define EAST			602
-# define SOUTH			603
-# define WEST			604
-
-# define UP				611
-# define DOWN			612
-# define LEFT			613
-# define RIGHT			614
-
-# define DIV			701
-# define ADD			702
-# define SUB			703
 
 typedef struct s_pos
 {
@@ -138,7 +104,7 @@ typedef struct s_ctrls
 
 typedef struct s_worldmap
 {
-	int	map[MAPWIDTH][MAPHEIGHT];
+	char	**map;
 }	t_worldmap;
 
 typedef struct s_data
@@ -210,21 +176,22 @@ void		ft_convert_map(t_map_parse *map_parse);
 void		ft_error_message(char *str);
 
 /*MLX**************************************************************************/
-void		create_img_buffer(mlx_t *mlx);
 void		empty_img_buffer(void *param);
 
 /*IMG**************************************************************************/
-void		create_background(mlx_t *mlx);
-void		create_img_buffer(mlx_t *mlx);
+void		create_background(mlx_t *mlx, int32_t floor, int32_t ceiling);
+void		create_img_buffer(mlx_t *mlx, t_map_parse *map);
 void		empty_img_buffer(void *param);
 int			get_rgba(int r, int g, int b, int a);
 int			get_r(int rgba);
 int			get_g(int rgba);
 int			get_b(int rgba);
+int			get_a(int rgba);
 int			math_rgba(int color, int div, int operator);
 void		calc_wall_height(int side);
 int			set_colour(int mapx, int mapy, int side);
 void		draw_walls(int drawstart, int drawend, int x, int colour);
+int			gradient(int color, int div, int operator);
 
 /*EXEC*************************************************************************/
 void		set_direction(int d);
