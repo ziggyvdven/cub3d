@@ -51,7 +51,7 @@ void	create_background(mlx_t *mlx, int32_t floor, int32_t ceiling)
 		x = -1;
 		while (++x < SCREENWIDTH)
 		{
-		printf("Y = %d A= %d\n", y, get_a(floor));
+		//printf("Y = %d A= %d\n", y, get_a(floor));
 			if (y < SCREENHEIGHT / 2)
 				mlx_put_pixel(background, x, y, ceiling);
 			else

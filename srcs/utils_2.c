@@ -27,10 +27,7 @@ char	*ft_str_replace(char *str, char *to_replace, char *replace_with)
 			j++;
 		}
 		if (to_replace[j] == '\0')
-		{
 			ft_replace_algo(&str, to_replace, replace_with, i);
-			break ;
-		}
 		j = 0;
 		i++;
 	}
