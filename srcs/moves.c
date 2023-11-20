@@ -149,6 +149,8 @@ void	ft_moves(mlx_key_data_t keydata, void *param)
 		key()->a = false;
 	else if ((keydata.key == MLX_KEY_D) && keydata.action == MLX_RELEASE)
 		key()->d = false;
+	if (mlx_is_key_down(mlx, MLX_KEY_M))
+		key()->m_active = true;
 	return ;
 }
 

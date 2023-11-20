@@ -52,6 +52,9 @@
 # define ADD			702
 # define SUB			703
 
+# define ROTATE_SPEED	0.00004
+# define MOUSE_SPEED	700
+
 typedef struct s_map_parse {
 	char	**map;
 	char	**exec_map;
@@ -100,6 +103,7 @@ typedef struct s_ctrls
 	bool	right;
 	bool	a;
 	bool	d;
+	bool	m_active;
 }	t_ctrls;
 
 typedef struct s_worldmap
@@ -198,6 +202,9 @@ void		set_direction(int d);
 void		ft_raycaster(void *param);
 void		ft_moves(mlx_key_data_t keydata, void *param);
 void		ft_ctrls(void *param);
+void		ft_mouse(mlx_t *mlx);
+t_ctrls		*key(void);
+void		ft_rotate(double rotspeed);
 
 /*UTILS************************************************************************/
 

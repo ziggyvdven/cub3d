@@ -104,5 +104,6 @@ void	ft_raycaster(void *param)
 		colour = set_colour(ray()->mapx, ray()->mapy, side);
 		draw_walls(ray()->drawstart,
 			ray()->drawend, SCREENWIDTH - x - 1, colour);
+		ft_mouse(mlx);
 	}
 }
