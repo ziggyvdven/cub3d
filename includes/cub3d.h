@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/17 14:48:05 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:47:59 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_map_parse {
 	char	*texture_ea;
 	int		floor_color;
 	int		ceiling_color;
+	int		direction;
 }	t_map_parse;
 
 typedef struct s_pos
@@ -192,9 +193,9 @@ int			get_g(int rgba);
 int			get_b(int rgba);
 int			get_a(int rgba);
 int			math_rgba(int color, int div, int operator);
-int			calc_wall_height(int side);
+double		calc_wall_height(int side);
 int			set_texture(int mapx, int mapy, int side, int texnum);
-void		draw_walls(int drawstart, int drawend, int x, int side, int perpwalldist);
+void		draw_walls(int drawstart, int drawend, int x, int side, double perpwalldist);
 int			gradient(int color, int div, int operator);
 
 /*EXEC*************************************************************************/

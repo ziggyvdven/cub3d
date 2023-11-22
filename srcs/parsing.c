@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:14:02 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:22:09 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/22 18:49:27 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_init_map_parse(t_map_parse *map_parse)
 	map_parse->floor_color = 0;
 	map_parse->ceiling_color = 0;
 	map_parse->exec_map = NULL;
+	map_parse->direction = 0;
 }
 
 t_map_parse	ft_parsing(char *map)
