@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 15:30:37 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:02:53 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_raycaster(void *param)
 	int		x;
 	int		side;
 	int		colour;
+	double	walldist;
 	mlx_t	*mlx;
 
 	x = -1;
@@ -100,8 +101,8 @@ void	ft_raycaster(void *param)
 		set_step();
 		calc_sidedist(pos()->x, pos()->y);
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
-		calc_wall_height(side);
-		colour = set_colour(ray()->mapx, ray()->mapy, side);
+		walldist = calc_wall_height(side);
+		colour = set_colour(ray()->mapx, ray()->mapy, side, walldist);
 		draw_walls(ray()->drawstart,
 			ray()->drawend, SCREENWIDTH - x - 1, colour);
 	}

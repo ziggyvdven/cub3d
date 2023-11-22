@@ -6,13 +6,13 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 18:12:31 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:09:05 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	calc_wall_height(int side)
+double	calc_wall_height(int side)
 {
 	double		perpwalldist;
 	int			lineheight;
@@ -28,12 +28,19 @@ void	calc_wall_height(int side)
 	ray()->drawend = lineheight / 2 + SCREENHEIGHT / 2;
 	if (ray()->drawend >= SCREENHEIGHT)
 		ray()->drawend = SCREENHEIGHT - 1;
+	return (perpwalldist);
 }
 
-int	set_colour(int mapx, int mapy, int side)
+int	set_colour(int mapx, int mapy, int side, double walldist)
 {
 	int	colour;
+	double wallx;
 
+	if (side == 0)
+		wallx = pos()->y + walldist * ray()->raydiry;
+	else
+		wallx = pos()->x + walldist * ray()->raydiry;
+	wallx -= floor(wallx);
 	if (side == 1)
 	{
 		if (pos()->y >= mapy)
@@ -54,6 +61,10 @@ int	set_colour(int mapx, int mapy, int side)
 		colour = get_rgba(0, 0, 255, 255);
 	if (side == 0) 
 		colour = math_rgba(colour, 2, DIV);
+	if (wallx == 0.0)
+		colour = get_rgba(0, 255, 0, 255);
+	if (wallx == 1.0)
+		colour = get_rgba(0, 255, 0, 255);
 	return (colour);
 }
 

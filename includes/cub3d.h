@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/16 13:08:22 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:03:10 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,8 +188,8 @@ int			get_g(int rgba);
 int			get_b(int rgba);
 int			get_a(int rgba);
 int			math_rgba(int color, int div, int operator);
-void		calc_wall_height(int side);
-int			set_colour(int mapx, int mapy, int side);
+double		calc_wall_height(int side);
+int			set_colour(int mapx, int mapy, int side, double walldist);
 void		draw_walls(int drawstart, int drawend, int x, int colour);
 int			gradient(int color, int div, int operator);
 
