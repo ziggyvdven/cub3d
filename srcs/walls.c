@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 14:55:54 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:40:08 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,19 @@ void	draw_walls(int drawstart, int drawend, int x, int side, int perpwalldist)
 	int			r;
 	int			g;
 	int			b;
+	int 		i = 0;
 	// int			a;
 
 	texnum = 0;
 	if (side == 0)
-		wallx = pos()->y + perpwalldist * ray()->raydiry;
+		wallx = pos()->y + ray()->raydiry * perpwalldist;
 	else
-		wallx = pos()->x + perpwalldist * ray()->raydirx;
+		wallx = pos()->x + ray()->raydirx * perpwalldist;
 	wallx -= floor((wallx));
 	texx = (((int)(wallx * (double)TEXWIDTH)));
-	if (side == 0 && ray()->raydirx > 0)
+	if (side == 1 && ray()->raydirx > 0)
 		texx = TEXWIDTH - texx - 1;
-	if (side == 1 && ray()->raydiry < 0)
+	if (side == 0 && ray()->raydiry < 0)
 		texx = TEXWIDTH - texx - 1;
 	texnum = set_texture(ray()->mapx, ray()->mapy, side, texnum);
 	step = (1.0 * TEXHEIGHT / ray()->lineheight);
@@ -98,6 +99,13 @@ void	draw_walls(int drawstart, int drawend, int x, int side, int perpwalldist)
 			b = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4) + (sizeof(u_int8_t) * 2)];
 			// a = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4)];
 			colour = get_rgba(r, g, b, 255);
+			if (i < 3)
+				colour = get_rgba(0, 255, 0, 255);
+			if (drawstart > drawend - 3)
+				colour = get_rgba(0, 255, 0, 255);
+			if (texx == 1 || texx == 64)
+				colour = get_rgba(0, 255, 0, 255);
+			i++;
 			// printf("texture: %d\n",);
 			// printf("color = %d\n", colour);
 			mlx_put_pixel(data()->buf, x, drawstart, colour);
