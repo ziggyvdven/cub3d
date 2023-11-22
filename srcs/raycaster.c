@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 15:30:37 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:12:30 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	dda(double deltax, double deltay, int stepx, int stepy)
 			ray()->mapy += stepy;
 			side = 1;
 		}
+		// printf("map y = %d, mapx = %d\n", ray()->mapy, ray()->mapx);
 		if (wm()->map[ray()->mapy][ray()->mapx] == '1')
 			hit = 1;
 	}
@@ -86,23 +87,22 @@ void	ft_raycaster(void *param)
 {
 	int		x;
 	int		side;
-	int		colour;
 	mlx_t	*mlx;
+	int 	perpwalldist;
 
 	x = -1;
 	side = 0;
 	mlx = param;
-	empty_img_buffer(data()->buf);
 	ft_ctrls(mlx);
+	empty_img_buffer(data()->buf);
 	while (++x < SCREENWIDTH)
 	{
 		calc_ray_dir(x);
 		set_step();
 		calc_sidedist(pos()->x, pos()->y);
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
-		calc_wall_height(side);
-		colour = set_colour(ray()->mapx, ray()->mapy, side);
+		perpwalldist = calc_wall_height(side);
 		draw_walls(ray()->drawstart,
-			ray()->drawend, SCREENWIDTH - x - 1, colour);
+			ray()->drawend, SCREENWIDTH - x - 1, side, perpwalldist);
 	}
 }

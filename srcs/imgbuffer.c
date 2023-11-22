@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:29 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/16 13:37:48 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:42:24 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	create_background(mlx_t *mlx, int32_t floor, int32_t ceiling)
 		x = -1;
 		while (++x < SCREENWIDTH)
 		{
-		printf("Y = %d A= %d\n", y, get_a(floor));
 			if (y < SCREENHEIGHT / 2)
 				mlx_put_pixel(background, x, y, ceiling);
 			else
@@ -61,9 +60,7 @@ void	create_background(mlx_t *mlx, int32_t floor, int32_t ceiling)
 			/ 4 && y % ((SCREENHEIGHT / 4) / 255) == 0)
 			ceiling = gradient(ceiling, 1, SUB);
 		if (y > (SCREENHEIGHT / 2) && y % ((SCREENHEIGHT / 2) / 255) == 0)
-		{
 			floor = gradient(floor, 1, SUB);
-		}
 	}
 }
 
