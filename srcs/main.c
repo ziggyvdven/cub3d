@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 16:28:25 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:56:49 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,40 @@
 
 void	set_direction(int d)
 {
-	if (d == WEST)
+	if (d == WEST || d == EAST)
 	{
-		dir()->x = -1;
-		dir()->y = 0;
-		plane()->x = 0;
+		dir()->x = -1.0;
+		dir()->y = 0.0;
+		plane()->x = 0.0;
 		plane()->y = 0.66;
+		if (d == EAST)
+		{
+			dir()->x *= -1.0;
+			plane()->y *= -1.0;
+		}
 	}
-	if (d == SOUTH)
+	if (d == SOUTH || d == NORTH)
 	{
-		dir()->x = 0;
-		dir()->y = 1;
+		dir()->x = 0.0;
+		dir()->y = 1.0;
 		plane()->x = 0.66;
-		plane()->y = 0;
-	}
-	if (d == EAST)
-	{
-		dir()->x = 1;
-		dir()->y = 0;
-		plane()->x = 0;
-		plane()->y = -0.66;
-	}
-	if (d == NORTH)
-	{
-		dir()->x = 0;
-		dir()->y = -1;
-		plane()->x = -0.66;
-		plane()->y = 0;
+		plane()->y = 0.0;
+		if (d == NORTH)
+		{
+			dir()->y *= -1.0;
+			plane()->x *= -1.0;
+		}
 	}
 }
 
 void	set_values(t_map_parse *map)
 {
-	pos()->x = map->player_x;
-	pos()->y = map->player_y;
-	set_direction(NORTH);
-	data()->time = 0;
-	data()->oldtime = 0;
+	pos()->x = (double)map->player_x + 0.5;
+	pos()->y = (double)map->player_y + 0.5 ;
+	set_direction(map->direction);
+	data()->time = 0.0;
+	data()->oldtime = 0.0;
+	generate_textures(map);
 	return ;
 }
 

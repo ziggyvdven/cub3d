@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/16 13:08:22 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:05:05 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 
 # define MAPWIDTH		24
 # define MAPHEIGHT		24
+# define TEXWIDTH		64
+# define TEXHEIGHT		64
 # define SCREENWIDTH	1280
 # define SCREENHEIGHT	1024
 
@@ -75,6 +77,7 @@ typedef struct s_map_parse {
 	char	*texture_ea;
 	int		floor_color;
 	int		ceiling_color;
+	int		direction;
 }	t_map_parse;
 
 typedef struct s_pos
@@ -109,23 +112,24 @@ typedef struct s_ctrls
 typedef struct s_worldmap
 {
 	char	**map;
-}	t_worldmap;
+}			t_worldmap;
 
 typedef struct s_data
 {
-	double		time;
-	double		oldtime;
-	double		frametime;
-	mlx_t		*mlx;
-	mlx_image_t	*buf;
-}	t_data;
+	double			time;
+	double			oldtime;
+	double			frametime;
+	mlx_t			*mlx;
+	mlx_image_t		*buf;
+	mlx_texture_t	texture[4];
+}				t_data;
 
 typedef struct s_mv
 {
-	double	mspeed;
-	double	rpeed;
-	double	olddirx;
-	double	oldplanex;
+	double		mspeed;
+	double		rpeed;
+	double		olddirx;
+	double		oldplanex;
 }	t_mv;
 
 typedef struct s_raycaster
@@ -143,13 +147,14 @@ typedef struct s_raycaster
 	int			drawstart;
 	int			drawend;
 	int			colour;
+	int			lineheight;
 }	t_raycaster;
 
 typedef struct s_overlay
 {
 	mlx_image_t	*pos;
 	char		*str;
-}	t_overlay;
+}				t_overlay;
 
 /*PARSING**********************************************************************/
 
@@ -192,9 +197,9 @@ int			get_g(int rgba);
 int			get_b(int rgba);
 int			get_a(int rgba);
 int			math_rgba(int color, int div, int operator);
-void		calc_wall_height(int side);
-int			set_colour(int mapx, int mapy, int side);
-void		draw_walls(int drawstart, int drawend, int x, int colour);
+double		calc_wall_height(int side);
+int			set_texture(int mapx, int mapy, int side, int texnum);
+void		draw_walls(int drawstart, int drawend, int x, int side, double perpwalldist);
 int			gradient(int color, int div, int operator);
 
 /*EXEC*************************************************************************/
@@ -205,6 +210,9 @@ void		ft_ctrls(void *param);
 void		ft_mouse(mlx_t *mlx);
 t_ctrls		*key(void);
 void		ft_rotate(double rotspeed);
+
+/*TEXTURE**********************************************************************/
+void		generate_textures(t_map_parse *map);
 
 /*UTILS************************************************************************/
 

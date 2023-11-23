@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 15:30:37 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:05:39 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,43 +17,43 @@ void	calc_ray_dir(int x)
 {
 	double	camx;
 
-	camx = 2 * x / (double)SCREENWIDTH - 1;
+	camx = 2.0 * x / (double)SCREENWIDTH - 1.0;
 	ray()->raydirx = dir()->x + plane()->x * camx;
-	if (ray()->raydirx == 0)
+	if (ray()->raydirx == 0.0)
 		ray()->deltax = 1e30;
 	else
-		ray()->deltax = fabs(1 / ray()->raydirx);
+		ray()->deltax = fabs(1.0 / ray()->raydirx);
 	ray()->raydiry = dir()->y + plane()->y * camx;
-	if (ray()->raydiry == 0)
+	if (ray()->raydiry == 0.0)
 		ray()->deltay = 1e30;
 	else
-		ray()->deltay = fabs(1 / ray()->raydiry);
+		ray()->deltay = fabs(1.0 / ray()->raydiry);
 }
 
 void	set_step(void)
 {
-	if (ray()->raydirx < 0)
-		ray()->stepx = -1;
+	if (ray()->raydirx < 0.0)
+		ray()->stepx = -1.0;
 	else
-		ray()->stepx = 1;
-	if (ray()->raydiry < 0)
-		ray()->stepy = -1;
+		ray()->stepx = 1.0;
+	if (ray()->raydiry < 0.0)
+		ray()->stepy = -1.0;
 	else
-		ray()->stepy = 1;
+		ray()->stepy = 1.0;
 }
 
 void	calc_sidedist(int posx, int posy)
 {
 	ray()->mapx = posx;
 	ray()->mapy = posy;
-	if (ray()->raydirx < 0)
-		ray()->sidedistx = (pos()->x - ray()->mapx) * ray()->deltax;
+	if (ray()->raydirx < 0.0)
+		ray()->sidedistx = (pos()->x - (double)ray()->mapx) * ray()->deltax;
 	else
-		ray()->sidedistx = (ray()->mapx + 1.0 - pos()->x) * ray()->deltax;
-	if (ray()->raydiry < 0)
-		ray()->sidedisty = (pos()->y - ray()->mapy) * ray()->deltay;
+		ray()->sidedistx = ((double)ray()->mapx + 1.0 - pos()->x) * ray()->deltax;
+	if (ray()->raydiry < 0.0)
+		ray()->sidedisty = (pos()->y - (double)ray()->mapy) * ray()->deltay;
 	else
-		ray()->sidedisty = (ray()->mapy + 1.0 - pos()->y) * ray()->deltay;
+		ray()->sidedisty = ((double)ray()->mapy + 1.0 - pos()->y) * ray()->deltay;
 }
 
 int	dda(double deltax, double deltay, int stepx, int stepy)
@@ -76,6 +76,7 @@ int	dda(double deltax, double deltay, int stepx, int stepy)
 			ray()->mapy += stepy;
 			side = 1;
 		}
+		// printf("map y = %d, mapx = %d\n", ray()->mapy, ray()->mapx);
 		if (wm()->map[ray()->mapy][ray()->mapx] == '1')
 			hit = 1;
 	}
@@ -86,22 +87,21 @@ void	ft_raycaster(void *param)
 {
 	int		x;
 	int		side;
-	int		colour;
 	mlx_t	*mlx;
+	double 	perpwalldist;
 
 	x = -1;
 	side = 0;
 	mlx = param;
-	empty_img_buffer(data()->buf);
 	ft_ctrls(mlx);
+	empty_img_buffer(data()->buf);
 	while (++x < SCREENWIDTH)
 	{
 		calc_ray_dir(x);
 		set_step();
-		calc_sidedist(pos()->x, pos()->y);
+		calc_sidedist((int)pos()->x, (int)pos()->y);
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
-		calc_wall_height(side);
-		colour = set_colour(ray()->mapx, ray()->mapy, side);
+		perpwalldist = calc_wall_height(side);
 		draw_walls(ray()->drawstart,
 			ray()->drawend, SCREENWIDTH - x - 1, colour);
 		ft_mouse(mlx);

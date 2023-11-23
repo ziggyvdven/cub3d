@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:13:36 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:13:57 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/22 18:49:14 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ void	ft_find_player_in_line(t_map_parse *map_parse, int map_size, char p)
 		map_parse->player++;
 		map_parse->player_x = pos_x;
 		map_parse->player_y = map_size - 1;
+		if (p == 'N')
+			map_parse->direction = NORTH;
+		if (p == 'S')
+			map_parse->direction = SOUTH;
+		if (p == 'E')
+			map_parse->direction = EAST;
+		if (p == 'W')
+			map_parse->direction = WEST;
 	}
 }
 

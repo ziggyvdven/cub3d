@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:09:08 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 15:55:42 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:25:46 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	ft_move(double ms, int direction)
 	{
 		// printf("next spoty %d, next spots %d value = %d\n", (int)(pos()->y + dir()->y), (int)(pos()->x + dir()->x), wm()->map[(int)(pos()->y + dir()->y)]
 		// 	[(int)(pos()->x + dir()->x)]);
-		if (wm()->map[(int)(pos()->y + dir()->y - 0.1f)]
+		if (wm()->map[(int)(pos()->y + dir()->y - 0.1)]
 			[(int)pos()->x] == '0')
 			pos()->y += dir()->y * ms;
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x + dir()->x - 0.1f)] == '0')
+			[(int)(pos()->x + dir()->x - 0.1)] == '0')
 			pos()->x += dir()->x * ms;
 		// if (wm()->map[(int)(pos()->y + dir()->y)]
 		// 	[(int)(pos()->x)] == 5)
@@ -67,28 +67,28 @@ void	ft_move(double ms, int direction)
 	else if (direction == DOWN)
 	{
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x - dir()->x + 0.1f)] == '0')
+			[(int)(pos()->x - dir()->x + 0.1)] == '0')
 			pos()->x -= dir()->x * ms;
-		if (wm()->map[(int)(pos()->y - dir()->y + 0.1f)]
+		if (wm()->map[(int)(pos()->y - dir()->y + 0.1)]
 			[(int)pos()->x] == '0')
 			pos()->y -= dir()->y * ms;
 	}
 	else if (direction == RIGHT)
 	{
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x - plane()->x + 0.1f)] == '0')
+			[(int)(pos()->x - plane()->x + 0.1)] == '0')
 			pos()->x -= plane()->x * ms;
-		if (wm()->map[(int)(pos()->y - plane()->y + 0.1f)]
+		if (wm()->map[(int)(pos()->y - plane()->y + 0.1)]
 			[(int)pos()->x] == '0')
 			pos()->y -= plane()->y * ms;
 	}
 	else if (direction == LEFT)
 	{
-		if (wm()->map[(int)(pos()->y + plane()->y + 0.1f)]
+		if (wm()->map[(int)(pos()->y + plane()->y + 0.1)]
 			[(int)pos()->x] == '0')
 			pos()->y += plane()->y * ms;
 		if (wm()->map[(int)pos()->y]
-			[(int)(pos()->x + plane()->x + 0.1f)] == '0')
+			[(int)(pos()->x + plane()->x + 0.1)] == '0')
 			pos()->x += plane()->x * ms;
 	}
 }
