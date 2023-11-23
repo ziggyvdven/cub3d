@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 18:47:59 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:59:43 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ void		ft_moves(mlx_key_data_t keydata, void *param);
 void		ft_ctrls(void *param);
 
 /*TEXTURE**********************************************************************/
-void		generate_textures(void);
+void		generate_textures(t_map_parse *map);
 
 /*UTILS************************************************************************/
 

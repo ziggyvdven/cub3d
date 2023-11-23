@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 18:50:00 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:56:49 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	set_values(t_map_parse *map)
 	set_direction(map->direction);
 	data()->time = 0.0;
 	data()->oldtime = 0.0;
-	generate_textures();
+	generate_textures(map);
 	return ;
 }
 

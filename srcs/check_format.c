@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:04:31 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:05:03 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/22 19:00:24 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,13 @@ bool	ft_check_textureformat(char *map)
 	int	end;
 
 	end = ft_strlen(map) - 1;
-	if (map[end] != '2')
+	if (map[end] != 'g')
 		return (FALSE);
 	end--;
-	if (map[end] != '4')
-		return (FALSE);
-	end--;
-	if (map[end] != 'm')
+	if (map[end] != 'n')
 		return (FALSE);
 	end--;
 	if (map[end] != 'p')
-		return (FALSE);
-	end--;
-	if (map[end] != 'x')
 		return (FALSE);
 	end--;
 	if (map[end] != '.')
