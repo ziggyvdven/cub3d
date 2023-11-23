@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/23 12:11:40 by zvan-de-          #+#    #+#             */
+/*   Updated: 2023/11/23 12:11:51 by zvan-de-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	ft_mouse(mlx_t *mlx)
@@ -8,7 +20,7 @@ void	ft_mouse(mlx_t *mlx)
 	x = 0;
 	y = 0;
 	if (key()->m_active == FALSE)
-		return;
+		return ;
 	mlx_get_mouse_pos(mlx, &x, &y);
 	mlx_set_cursor_mode(mlx, MLX_MOUSE_HIDDEN);
 	if (x > (double)(SCREENWIDTH * 0.5))

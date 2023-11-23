@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:55:11 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/10 15:05:32 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:41:31 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ void	ft_overlay_entry(mlx_t *mlx, mlx_image_t *img, char *str)
 
 void	ft_overlay(mlx_t *mlx)
 {
-	char *str;
+	char	*str;
+	char	*x;
+	char	*y;
 
-	str = ft_strjoin("Pos x:", ft_itoa(pos()->x));
-	str = ft_strjoin(str, " y:");
-	str = ft_strjoin(str, ft_itoa(pos()->y));
+	x = ft_itoa(pos()->x);
+	y = ft_itoa(pos()->y);
+	str = ft_strjoin("Pos x:", x);
+	str = ft_strjoin_free(str, " y:");
+	str = ft_strjoin_free(str, y);
+	free(x);
+	free(y);
 	ft_overlay_entry(mlx, overlay()->pos, str);
 }

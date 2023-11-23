@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:29 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 19:05:28 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:21:18 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ mlx_image_t	*create_background_layer(mlx_t *mlx)
 	return (layer2);
 }
 
-
 void	create_background(mlx_t *mlx, int32_t floor, int32_t ceiling)
 {
 	int32_t		x;
@@ -62,6 +61,23 @@ void	create_background(mlx_t *mlx, int32_t floor, int32_t ceiling)
 		if (y > (SCREENHEIGHT / 2) && y % ((SCREENHEIGHT / 2) / 255) == 0)
 			floor = gradient(floor, 1, SUB);
 	}
+}
+
+int	gradient(int color, int div, int operator)
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+
+	r = get_r(color);
+	g = get_g(color);
+	b = get_b(color);
+	if (operator == ADD && get_a(color) != 255)
+		a = get_a(color) + div;
+	if (operator == SUB && get_a(color) != 0)
+		a = get_a(color) - div;
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 void	create_img_buffer(mlx_t *mlx, t_map_parse *map)

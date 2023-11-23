@@ -6,13 +6,12 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 19:05:39 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:42:21 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-//calculate ray position and direction
 void	calc_ray_dir(int x)
 {
 	double	camx;
@@ -49,11 +48,13 @@ void	calc_sidedist(int posx, int posy)
 	if (ray()->raydirx < 0.0)
 		ray()->sidedistx = (pos()->x - (double)ray()->mapx) * ray()->deltax;
 	else
-		ray()->sidedistx = ((double)ray()->mapx + 1.0 - pos()->x) * ray()->deltax;
+		ray()->sidedistx = ((double)ray()->mapx + 1.0 - pos()->x)
+		* ray()->deltax;
 	if (ray()->raydiry < 0.0)
 		ray()->sidedisty = (pos()->y - (double)ray()->mapy) * ray()->deltay;
 	else
-		ray()->sidedisty = ((double)ray()->mapy + 1.0 - pos()->y) * ray()->deltay;
+		ray()->sidedisty = ((double)ray()->mapy + 1.0 - pos()->y)
+		* ray()->deltay;
 }
 
 int	dda(double deltax, double deltay, int stepx, int stepy)
@@ -76,7 +77,6 @@ int	dda(double deltax, double deltay, int stepx, int stepy)
 			ray()->mapy += stepy;
 			side = 1;
 		}
-		// printf("map y = %d, mapx = %d\n", ray()->mapy, ray()->mapx);
 		if (wm()->map[ray()->mapy][ray()->mapx] == '1')
 			hit = 1;
 	}
@@ -88,12 +88,12 @@ void	ft_raycaster(void *param)
 	int		x;
 	int		side;
 	mlx_t	*mlx;
-	double 	perpwalldist;
 
 	x = -1;
 	side = 0;
 	mlx = param;
 	ft_ctrls(mlx);
+	ft_minimap(mlx);
 	empty_img_buffer(data()->buf);
 	while (++x < SCREENWIDTH)
 	{
@@ -101,9 +101,9 @@ void	ft_raycaster(void *param)
 		set_step();
 		calc_sidedist((int)pos()->x, (int)pos()->y);
 		side = dda(ray()->deltax, ray()->deltay, ray()->stepx, ray()->stepy);
-		perpwalldist = calc_wall_height(side);
+		calc_wall_height(side);
 		draw_walls(ray()->drawstart,
-			ray()->drawend, SCREENWIDTH - x - 1, colour);
+			ray()->drawend, SCREENWIDTH - x - 1, side);
 		ft_mouse(mlx);
 	}
 }

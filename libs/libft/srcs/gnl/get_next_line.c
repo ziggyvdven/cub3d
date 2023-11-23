@@ -6,11 +6,11 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:43:39 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/04/13 18:33:01 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:24:16 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 char	*ft_readline(char *s, int fd)
 {
@@ -60,7 +60,7 @@ char	*ft_make_line(char *s, char *nl)
 			new_line[j++] = s[i];
 			break ;
 		}
-	new_line[j++] = s[i++];
+		new_line[j++] = s[i++];
 	}
 	free (nl);
 	return (new_line);

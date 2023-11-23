@@ -6,11 +6,11 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:21:05 by zvandeven         #+#    #+#             */
-/*   Updated: 2023/04/19 12:22:39 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:27:32 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 void	ft_checkzero_pf(long int a)
 {

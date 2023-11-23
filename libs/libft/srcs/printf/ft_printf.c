@@ -6,11 +6,11 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:09:49 by zvandeven         #+#    #+#             */
-/*   Updated: 2023/04/19 12:22:13 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:27:15 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 int	ft_prspecifier(char c, va_list *args)
 {
@@ -46,7 +46,7 @@ int	ft_printf(const char *print_str, ...)
 	count = 0;
 	va_start (args, print_str);
 	while (print_str[i] != '\0')
-	{	
+	{
 		if (print_str[i] != '%')
 		{
 			write(1, &print_str[i], 1);

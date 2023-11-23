@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:07:25 by zvandeven         #+#    #+#             */
-/*   Updated: 2023/04/19 11:39:44 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:26:12 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_doublechar(char *base)
 		{
 			if (base[i] == base[j])
 				return (1);
-		++j;
+			++j;
 		}
-	++i;
+		++i;
 	}
 	return (0);
 }
@@ -62,7 +62,7 @@ void	ft_putnbr_base(int nbr, char *base)
 		if (((base[len] == '-') || (base[len] == '+'))
 			|| ((base[len] <= 31)))
 			return ;
-	len ++;
+		len ++;
 	}
 	if (len < 2)
 		return ;

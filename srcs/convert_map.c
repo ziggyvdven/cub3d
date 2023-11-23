@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:11:32 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:13:04 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/23 17:58:12 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,44 @@ void	ft_replace_by_zeros(t_map_parse *map_parse)
 	}
 }
 
+int	get_max_mapwidth(char **map)
+{
+	int	x;
+	int	y;
+	int	mapwidth;
+
+	y = -1;
+	mapwidth = 0;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (x > mapwidth)
+				mapwidth = x;
+		}
+	}
+	return (mapwidth);
+}
+
+void	ft_add_zeros(t_map_parse *map_parse)
+{
+	int				y;
+	unsigned long	max;
+
+	y = 0;
+	max = get_max_mapwidth(map_parse->exec_map);
+	while (map_parse->exec_map[y])
+	{
+		while (strlen(map_parse->exec_map[y]) <= max)
+		{
+			map_parse->exec_map[y]
+				= ft_strjoin_free(map_parse->exec_map[y], "0");
+		}
+		y++;
+	}
+}
+
 void	ft_convert_map(t_map_parse *map_parse)
 {
 	int	map_size;
@@ -52,4 +90,5 @@ void	ft_convert_map(t_map_parse *map_parse)
 	}
 	map_parse->player_y = map_parse->player_y - map_parse->lastidentline - 1;
 	ft_replace_by_zeros(map_parse);
+	ft_add_zeros(map_parse);
 }

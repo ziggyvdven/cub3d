@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:14:57 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:15:54 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/23 17:22:32 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,27 @@ void	ft_print_array(char **array)
 	i = 0;
 	while (array[i])
 		printf("%s\n", array[i++]);
+}
+
+int	get_mapwidth(char **map, int y)
+{
+	int	x;
+
+	x = 0;
+	while (map[y][x])
+	{
+		x++;
+	}
+	return (x);
+}
+
+int	get_mapheight(char **map)
+{
+	int	y;
+
+	y = -1;
+	while (map[++y])
+	{
+	}
+	return (y);
 }

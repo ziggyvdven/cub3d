@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:03:56 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/15 15:27:16 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:39:17 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,3 @@ t_raycaster	*ray(void)
 
 	return (&ray);
 }
-
-t_worldmap	*wm(void)
-{
-	static t_worldmap map;
-
-	return (&map);
-}
-

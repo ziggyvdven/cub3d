@@ -6,11 +6,11 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 11:07:25 by zvandeven         #+#    #+#             */
-/*   Updated: 2023/04/19 12:26:53 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:26:46 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"../../includes/libft.h"
+#include "../../includes/libft.h"
 
 int	ft_printnbr_adr(unsigned long nbr, unsigned int len, char *base)
 {
@@ -38,7 +38,7 @@ int	ft_putnbr_base_adr(unsigned long nbr, int count, int b)
 	if (b == 2)
 		base = "0123456789ABCDEF";
 	while (base[len] != '\0')
-	len ++;
+		len ++;
 	count = ft_printnbr_adr(nbr, len, base);
 	return (count);
 }

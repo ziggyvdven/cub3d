@@ -6,16 +6,16 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/22 18:34:31 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:12:43 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-double	calc_wall_height(int side)
+void	calc_wall_height(int side)
 {
-	double		perpwalldist;
 	int			lineheight;
+	double		perpwalldist;
 
 	if (side == 0)
 		perpwalldist = (ray()->sidedistx - ray()->deltax);
@@ -29,61 +29,48 @@ double	calc_wall_height(int side)
 	if (ray()->drawend >= SCREENHEIGHT)
 		ray()->drawend = SCREENHEIGHT - 1;
 	ray()->lineheight = lineheight;
-	return (perpwalldist);
+	ray()->perpwalldist = perpwalldist;
 }
 
-int	set_texture(int mapx, int mapy, int side, int texnum)
+double	calc_texx(double perpwalldist, int side)
 {
-	if (side == 1)
-	{
-		if (pos()->y >= mapy)
-			texnum = 0;
-		if (pos()->y <= mapy)
-			texnum = 1;
-	}
-	if (side == 0)
-	{
-		if (pos()->x >= mapx)
-			texnum = 2;
-		if (pos()->x <= mapx)
-			texnum = 3;
-	}
-	// if (wm()->map[mapy][mapx] == 5)
-	// 	colour = get_rgba(0, 255, 0, 255);
-	// if (wm()->map[mapy][mapx] == 3)
-	// 	colour = get_rgba(0, 0, 255, 255);
-	// if (side == 0) 
-	// 	colour = math_rgba(colour, 2, DIV);
-	return (texnum);
-}
+	double	wallx;
+	int		texx;
 
-void	draw_walls(int drawstart, int drawend, int x, int side, double perpwalldist)
-{
-	// int		y;
-	u_int32_t	colour;
-	double		wallx;
-	int			texx;
-	int			texy;
-	int			texnum;
-	double		step;
-	double		texpos;
-	int			r;
-	int			g;
-	int			b;
-	// int			a;
-
-	texnum = 0;
 	if (side == 0)
 		wallx = pos()->y + ray()->raydiry * perpwalldist;
 	else
 		wallx = pos()->x + ray()->raydirx * perpwalldist;
 	wallx -= floor((wallx));
 	texx = (((int)(wallx * (double)TEXWIDTH)));
-	// if (side == 1 && ray()->raydirx > 0)
-	// 	texx = TEXWIDTH - texx - 1;
-	// if (side == 0 && ray()->raydiry < 0)
-	// 	texx = TEXWIDTH - texx - 1;
-	texnum = set_texture(ray()->mapx, ray()->mapy, side, texnum);
+	return (texx);
+}
+
+int	get_pixel_colour(int texy, int texx, int side)
+{
+	int			r;
+	int			g;
+	int			b;
+	int			tex;
+
+	tex = set_texture(ray()->mapx, ray()->mapy, side);
+	texx *= 4;
+	texy *= 4;
+	r = data()->texture[tex].pixels[TEXHEIGHT * texy + texx];
+	g = data()->texture[tex].pixels[TEXHEIGHT * texy + texx + 1];
+	b = data()->texture[tex].pixels[TEXHEIGHT * texy + texx + 2];
+	return (get_rgba(r, g, b, 255));
+}
+
+void	draw_walls(int drawstart, int drawend, int x, int side)
+{
+	u_int32_t	colour;
+	int			texx;
+	int			texy;
+	double		step;
+	double		texpos;
+
+	texx = calc_texx(ray()->perpwalldist, side);
 	step = (1.0 * TEXHEIGHT / ray()->lineheight);
 	texpos = (drawstart - SCREENHEIGHT / 2 + ray()->lineheight / 2) * step;
 	if (drawstart <= drawend)
@@ -92,17 +79,9 @@ void	draw_walls(int drawstart, int drawend, int x, int side, double perpwalldist
 		{
 			texy = ((int)texpos & (TEXHEIGHT - 1));
 			texpos += step;
-			// // printf("texy = %d texx = %d step = %.2f\n", texy, texx, step);
-			r = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4)];
-			g = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4) + sizeof(u_int8_t)];
-			b = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4) + (sizeof(u_int8_t) * 2)];
-			// a = data()->texture[texnum].pixels[TEXHEIGHT * (texy * 4) + (texx * 4)];
-			colour = get_rgba(r, g, b, 255);
-			// printf("texture: %d\n",);
-			// printf("color = %d\n", colour);
+			colour = get_pixel_colour(texy, texx, side);
 			mlx_put_pixel(data()->buf, x, drawstart, colour);
 			drawstart++;
 		}
 	}
 }
-
