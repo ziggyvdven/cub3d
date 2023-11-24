@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 18:02:48 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:29:24 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 #define ADD 702
 #define SUB 703
 
-#define ROTATE_SPEED 0.00004
+#define ROTATE_SPEED 0.00006
 #define MOUSE_SPEED 700
 
 typedef struct s_map_parse
@@ -110,6 +110,7 @@ typedef struct s_ctrls
 	bool d;
 	bool m_active;
 	bool map_active;
+	bool is_moving;
 } t_ctrls;
 
 typedef struct s_worldmap
@@ -124,7 +125,7 @@ typedef struct s_data
 	double frametime;
 	mlx_t *mlx;
 	mlx_image_t *buf;
-	mlx_texture_t texture[4];
+	mlx_texture_t texture[5];
 } t_data;
 
 typedef struct s_mv
@@ -158,6 +159,7 @@ typedef struct s_raycaster
 typedef struct s_overlay
 {
 	mlx_image_t *pos;
+	mlx_image_t *hand;
 	char *str;
 } t_overlay;
 
@@ -184,6 +186,7 @@ void ft_find_player_in_line(t_map_parse *map_parse, int map_size,
 							char p);
 void ft_prepare_map(t_map_parse *map_parse);
 void ft_convert_map(t_map_parse *map_parse);
+int	get_max_mapwidth(char **map);
 
 /*ERROR************************************************************************/
 
@@ -206,6 +209,7 @@ void calc_wall_height(int side);
 int set_texture(int mapx, int mapy, int side);
 void draw_walls(int drawstart, int drawend, int x, int side);
 int gradient(int color, int div, int operator);
+void create_hand(void);
 
 /*EXEC*************************************************************************/
 void set_direction(int d);
@@ -242,5 +246,6 @@ t_data *data(void);
 t_worldmap *wm(void);
 t_raycaster *ray(void);
 void ft_overlay(mlx_t *mlx);
+t_overlay	*overlay(void);
 
 #endif

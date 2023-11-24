@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:18:16 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 17:22:23 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:49:28 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,17 @@ void	draw_mmap(t_minimap	*m, uint32_t y, double posx, double posy)
 	}
 }
 
+void	ft_init_minimap(t_minimap *minimap)
+{
+	minimap->map = NULL;
+	minimap->mapwidth = 0;
+	minimap->mapheight = 0;
+	minimap->xscale = 0;
+	minimap->yscale = 0;
+	minimap->mmapx = 0;
+	minimap->mmapy =0;
+}
+
 void	ft_minimap(void)
 {
 	uint32_t		y;
@@ -81,6 +92,7 @@ void	ft_minimap(void)
 	static double	prev_posy = 0;
 	t_minimap		m;
 
+	ft_init_minimap(&m);
 	if (key()->map_active == FALSE)
 		return ;
 	m.mapwidth = 0;

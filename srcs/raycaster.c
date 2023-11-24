@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 12:42:21 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/24 17:31:24 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,10 @@ void	ft_raycaster(void *param)
 	side = 0;
 	mlx = param;
 	ft_ctrls(mlx);
-	ft_minimap(mlx);
+	ft_minimap();
 	empty_img_buffer(data()->buf);
+	ft_mouse(mlx);
+	// create_hand();
 	while (++x < SCREENWIDTH)
 	{
 		calc_ray_dir(x);
@@ -104,6 +106,5 @@ void	ft_raycaster(void *param)
 		calc_wall_height(side);
 		draw_walls(ray()->drawstart,
 			ray()->drawend, SCREENWIDTH - x - 1, side);
-		ft_mouse(mlx);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:00:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 18:04:31 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:50:49 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	ft_key_press(mlx_key_data_t keydata, mlx_t *mlx)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		ft_free_ar(wm()->map);
-		ft_free_ar(wm()->map);
 		mlx_close_window(mlx);
 	}
+	ft_key_bonus(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 		key()->d = true;
 	else if (mlx_is_key_down(mlx, MLX_KEY_A))
@@ -90,7 +90,6 @@ void	ft_key_press(mlx_key_data_t keydata, mlx_t *mlx)
 		key()->left = true;
 	else if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		key()->right = true;
-	ft_key_bonus(mlx);
 }
 
 void	ft_moves(mlx_key_data_t keydata, void *param)

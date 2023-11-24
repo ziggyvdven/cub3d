@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:55:11 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 17:41:31 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:44:41 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	ft_overlay(mlx_t *mlx)
 	str = ft_strjoin_free(str, y);
 	free(x);
 	free(y);
+	overlay()->hand = NULL;
 	ft_overlay_entry(mlx, overlay()->pos, str);
 }
