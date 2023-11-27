@@ -69,5 +69,6 @@ int32_t	main(int argc, char **argv)
 	create_img_buffer(mlx, &map_parse);
 	mlx_key_hook(mlx, &ft_moves, mlx);
 	mlx_loop(mlx);
+	ft_free_ar(map_parse.map);
 	return (0);
 }

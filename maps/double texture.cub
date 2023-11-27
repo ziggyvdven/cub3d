@@ -1,8 +1,8 @@
-NO./textures/floor.xpm42
-lknjbhvgcffcgv
-SO./textures/tree.xpm42
-WE./textures/acorn.xpm42
-njbhvggv
+NO./textures/flowers.png
+SO./textures/wall_flower.png
+WE./textures/brick.png
+EA./textures/tiles.png
+
 EA./textures/bush.xpm42
 C255,045,45
 F0,180,50   

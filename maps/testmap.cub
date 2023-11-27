@@ -1,9 +1,8 @@
-NO./textures/floor.xpm42
-lknjbhvgcffcgv
-SO./textures/tree.xpm42
-WE./textures/acorn.xpm42
-njbhvggv
-EA./textures/bush.xpm42
+NO./textures/flowers.png
+SO./textures/wall_flower.png
+WE./textures/brick.png
+EA./textures/tiles.png
+
 F 220,100,0
 C 225,100,0
         1111111111111111111111111
