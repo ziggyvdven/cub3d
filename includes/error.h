@@ -6,7 +6,7 @@
 /*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:18:27 by lfrank            #+#    #+#             */
-/*   Updated: 2023/11/15 11:18:29 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/28 14:48:49 by lfrank           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@
 # define E_COLOR "There is something wrong with the color values.\n"
 # define E_MISSTEXT "Missing or multiple texture or color.\n"
 # define E_MISSPLAYER "Missing or multiple player in the map.\n"
-# define E_MAX "You're kind of exagerating here.\n" //To.do check if we need to check the max
 
 #endif
