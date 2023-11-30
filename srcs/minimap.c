@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:18:16 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/24 14:49:28 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:31:53 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_init_minimap(t_minimap *minimap)
 	minimap->xscale = 0;
 	minimap->yscale = 0;
 	minimap->mmapx = 0;
-	minimap->mmapy =0;
+	minimap->mmapy = 0;
 }
 
 void	ft_minimap(void)
@@ -95,7 +95,6 @@ void	ft_minimap(void)
 	ft_init_minimap(&m);
 	if (key()->map_active == FALSE)
 		return ;
-	m.mapwidth = 0;
 	m.mapheight = get_mapheight(wm()->map);
 	m.yscale = mini()->map->height / (float)m.mapheight;
 	y = -1;

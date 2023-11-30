@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/24 17:29:24 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:11:13 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ typedef struct s_ctrls
 
 typedef struct s_worldmap
 {
-	char **map;
+	char 	**map;
 } t_worldmap;
 
 typedef struct s_data
@@ -138,7 +138,7 @@ typedef struct s_mv
 
 typedef struct s_raycaster
 {
-	double raydirx;
+	double	raydirx;
 	double raydiry;
 	int mapx;
 	int mapy;
@@ -160,6 +160,7 @@ typedef struct s_overlay
 {
 	mlx_image_t *pos;
 	mlx_image_t *hand;
+	bool hand_active;
 	char *str;
 } t_overlay;
 
@@ -209,7 +210,7 @@ void calc_wall_height(int side);
 int set_texture(int mapx, int mapy, int side);
 void draw_walls(int drawstart, int drawend, int x, int side);
 int gradient(int color, int div, int operator);
-void create_hand(void);
+mlx_image_t	*create_hand(mlx_t *mlx);
 
 /*EXEC*************************************************************************/
 void set_direction(int d);
@@ -247,5 +248,8 @@ t_worldmap *wm(void);
 t_raycaster *ray(void);
 void ft_overlay(mlx_t *mlx);
 t_overlay	*overlay(void);
+int	ft_check_map_end(char **map, int y, int x);
+int	check_y(int y);
+int	check_x(int x);
 
 #endif

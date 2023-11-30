@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrank <lfrank@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/28 15:05:19 by lfrank           ###   ########.fr       */
+/*   Updated: 2023/11/30 14:54:16 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	set_values(t_map_parse *map)
 	data()->time = 0.0;
 	data()->oldtime = 0.0;
 	generate_textures(map);
+	overlay()->hand_active = false;
 	return ;
 }
 
@@ -65,8 +66,8 @@ int32_t	main(int argc, char **argv)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx = mlx_init(SCREENWIDTH, SCREENHEIGHT, "cub3D", true);
 	data()->mlx = mlx;
-	mlx_loop_hook(mlx, &ft_raycaster, mlx);
 	create_img_buffer(mlx, &map_parse);
+	mlx_loop_hook(mlx, &ft_raycaster, mlx);
 	mlx_key_hook(mlx, &ft_moves, mlx);
 	mlx_loop(mlx);
 	ft_free_ar(map_parse.map);

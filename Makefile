@@ -6,7 +6,7 @@
 #    By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 13:45:36 by zvandeven         #+#    #+#              #
-#    Updated: 2023/11/24 11:53:02 by zvan-de-         ###   ########.fr        #
+#    Updated: 2023/11/30 13:27:15 by zvan-de-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -153,4 +153,4 @@ val: $(NAME)
 	--show-reachable=yes \
 	--track-origins=yes -s \
 	--log-file="leaks.txt" \
-	./$(NAME) maps/maze.cub
+	./$(NAME) maps/testmap_maze.cub

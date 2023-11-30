@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:09:08 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/23 12:12:07 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:52:43 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,43 @@ void	ft_rotate(double rotspeed)
 void	ft_move_up(double ms)
 {
 	if (wm()->map[(int)(pos()->y + dir()->y - 0.1)]
-		[(int)pos()->x] == '0')
+		[(int)pos()->x] == '0' && !check_y(pos()->y + dir()->y * ms))
 		pos()->y += dir()->y * ms;
 	if (wm()->map[(int)pos()->y]
-		[(int)(pos()->x + dir()->x - 0.1)] == '0')
+		[(int)(pos()->x + dir()->x - 0.1)] == '0'
+		&& !check_x(pos()->x + dir()->x * ms))
 		pos()->x += dir()->x * ms;
 }
 
 void	ft_move_down(double ms)
 {
 	if (wm()->map[(int)pos()->y]
-		[(int)(pos()->x - dir()->x + 0.1)] == '0')
+		[(int)(pos()->x - dir()->x + 0.1)] == '0' 
+		&& !check_x(pos()->x - dir()->x * ms))
 		pos()->x -= dir()->x * ms;
 	if (wm()->map[(int)(pos()->y - dir()->y + 0.1)]
-		[(int)pos()->x] == '0')
+		[(int)pos()->x] == '0' && !check_y(pos()->y - dir()->y * ms))
 		pos()->y -= dir()->y * ms;
 }
 
 void	ft_move_right(double ms)
 {
 	if (wm()->map[(int)pos()->y]
-		[(int)(pos()->x - plane()->x + 0.1)] == '0')
+		[(int)(pos()->x - plane()->x + 0.1)] == '0'
+		&& !check_x(pos()->x - plane()->x * ms))
 		pos()->x -= plane()->x * ms;
 	if (wm()->map[(int)(pos()->y - plane()->y + 0.1)]
-		[(int)pos()->x] == '0')
+		[(int)pos()->x] == '0' && !check_y(pos()->y - plane()->y * ms))
 		pos()->y -= plane()->y * ms;
 }
 
 void	ft_move_left(double ms)
 {
 	if (wm()->map[(int)(pos()->y + plane()->y + 0.1)]
-		[(int)pos()->x] == '0')
+		[(int)pos()->x] == '0' && !check_y(pos()->y + plane()->y * ms))
 		pos()->y += plane()->y * ms;
 	if (wm()->map[(int)pos()->y]
-		[(int)(pos()->x + plane()->x + 0.1)] == '0')
+		[(int)(pos()->x + plane()->x + 0.1)] == '0'
+		&& !check_x(pos()->x + plane()->x * ms))
 		pos()->x += plane()->x * ms;
 }
