@@ -1,7 +1,7 @@
 NO./textures/flowers.png
-SO./textures/wall_flower.png
+SO./textures/wall_brick.png
 WE./textures/brick.png
-EA./textures/tiles.png
+EA./textures/wall_flower.png
 
 F 30,30,30
 C 250,150,150
