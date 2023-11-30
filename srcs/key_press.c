@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:00:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 15:11:59 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:11:24 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ void	ft_ctrls(void *param)
 void	ft_key_release(mlx_key_data_t keydata)
 {
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
+	{
+		key()->is_moving = false;
 		key()->up = false;
+	}
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
+	{
+		key()->is_moving = false;
 		key()->down = false;
+	}
 	if ((keydata.key == MLX_KEY_LEFT) && keydata.action == MLX_RELEASE)
 		key()->left = false;
 	else if ((keydata.key == MLX_KEY_RIGHT) && keydata.action == MLX_RELEASE)
@@ -60,40 +66,32 @@ void	ft_key_bonus(mlx_t *mlx)
 		key()->m_active = true;
 	if (mlx_is_key_down(mlx, MLX_KEY_M) && key()->map_active == true)
 	{
-		mlx_delete_image(mlx, mini()->map);
+		mini()->map->enabled = false;
 		key()->map_active = false;
 	}
 	else if (mlx_is_key_down(mlx, MLX_KEY_M))
 	{
-		create_minimap_img(mlx);
+		mini()->map->enabled = true;
 		key()->map_active = true;
 	}
-	// if (mlx_is_key_down(mlx, MLX_KEY_B) && overlay()->hand_active == true)
-	// {
-	// 	overlay()->hand_active = false;
-	// }
+	if (mlx_is_key_down(mlx, MLX_KEY_H) && overlay()->hand_active == true)
+	{
+		overlay()->hand_active = false;
+		create_hand(mlx, 0);
+	}
+	else if (mlx_is_key_down(mlx, MLX_KEY_H))
+	{
+		create_hand(mlx, 1);
+		overlay()->hand_active = true;
+	}
 }
 
 void	ft_key_press(mlx_key_data_t keydata, mlx_t *mlx)
 {
-	mlx_image_t *img = NULL;
-
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		ft_free_ar(wm()->map);
 		mlx_terminate(mlx);
-	}
-	if (keydata.key == MLX_KEY_B && keydata.action == MLX_PRESS && overlay()->hand_active == true) 
-	{
-		mlx_delete_image(mlx, img);
-		overlay()->hand_active = false;
-		printf("test1\n");
-	}
-	else if (keydata.key == MLX_KEY_B && keydata.action == MLX_PRESS)
-	{
-		img = create_hand(mlx);
-		printf("test\n");
-		overlay()->hand_active = true;
 	}
 	ft_key_bonus(mlx);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
@@ -101,9 +99,15 @@ void	ft_key_press(mlx_key_data_t keydata, mlx_t *mlx)
 	else if (mlx_is_key_down(mlx, MLX_KEY_A))
 		key()->a = true;
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
+	{
+		key()->is_moving = true;
 		key()->up = true;
+	}
 	else if (mlx_is_key_down(mlx, MLX_KEY_S))
+	{
+		key()->is_moving = true;
 		key()->down = true;
+	}
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		key()->left = true;
 	else if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))

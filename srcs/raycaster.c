@@ -6,20 +6,11 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:24:02 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 14:25:40 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:13:52 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	ft_check_map_end(char **map, int y, int x)
-{
-	if (get_mapheight(map) <= y || y <= 0)
-		return (1);
-	else if (get_max_mapwidth(map) <= x || x <= 0)
-		return (1);
-	return (0);
-}
 
 void	calc_ray_dir(int x)
 {
@@ -107,6 +98,7 @@ void	ft_raycaster(void *param)
 	ft_minimap();
 	empty_img_buffer(data()->buf);
 	ft_mouse(mlx);
+	create_hand(mlx, 3);
 	while (++x < SCREENWIDTH)
 	{
 		calc_ray_dir(x);

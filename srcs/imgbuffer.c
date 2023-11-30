@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:33:29 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 14:43:31 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:52:29 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ void	create_img_buffer(mlx_t *mlx, t_map_parse *map)
 	create_background(mlx, map->floor_color, map->ceiling_color);
 	buf = mlx_new_image(mlx, SCREENWIDTH, SCREENHEIGHT);
 	mlx_image_to_window(mlx, buf, 0, 0);
-	// create_hand();
 	data()->buf = buf;
+	create_minimap_img(mlx);
+	mini()->map->enabled = false;
 }
 
 void	empty_img_buffer(void *param)
