@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 17:29:16 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:48:45 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 
 # define MAPWIDTH 24
 # define MAPHEIGHT 24
-# define TEXWIDTH 64
-# define TEXHEIGHT 64
+# define TEXWIDTH 128
+# define TEXHEIGHT 128
 # define SCREENWIDTH 1280
 # define SCREENHEIGHT 1024
 
