@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:51:35 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 17:50:26 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:32:02 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	get_pixel_colour(int texy, int texx, int side)
 	tex = set_texture(ray()->mapx, ray()->mapy, side);
 	texx *= 4;
 	texy *= 4;
-	r = data()->texture[tex].pixels[TEXHEIGHT * texy + texx];
-	g = data()->texture[tex].pixels[TEXHEIGHT * texy + texx + 1];
-	b = data()->texture[tex].pixels[TEXHEIGHT * texy + texx + 2];
+	r = data()->texture[tex]->pixels[TEXHEIGHT * texy + texx];
+	g = data()->texture[tex]->pixels[TEXHEIGHT * texy + texx + 1];
+	b = data()->texture[tex]->pixels[TEXHEIGHT * texy + texx + 2];
 	return (get_rgba(r, g, b, 255));
 }
 

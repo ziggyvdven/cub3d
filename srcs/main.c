@@ -6,11 +6,22 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:51:12 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 14:54:16 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:17:29 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	ft_close(t_map_parse map_parse)
+{
+	mlx_delete_texture(data()->texture[0]);
+	mlx_delete_texture(data()->texture[1]);
+	mlx_delete_texture(data()->texture[2]);
+	mlx_delete_texture(data()->texture[3]);
+	mlx_delete_texture(data()->texture[4]);
+	ft_free_ar(map_parse.map);
+
+}
 
 void	set_direction(int d)
 {
@@ -70,6 +81,7 @@ int32_t	main(int argc, char **argv)
 	mlx_loop_hook(mlx, &ft_raycaster, mlx);
 	mlx_key_hook(mlx, &ft_moves, mlx);
 	mlx_loop(mlx);
-	ft_free_ar(map_parse.map);
+	ft_close(map_parse);
+	mlx_terminate(mlx);
 	return (0);
 }

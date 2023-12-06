@@ -6,7 +6,7 @@
 /*   By: zvan-de- <zvan-de-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:40:58 by zvan-de-          #+#    #+#             */
-/*   Updated: 2023/11/30 17:48:45 by zvan-de-         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:31:50 by zvan-de-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_data
 	double			frametime;
 	mlx_t			*mlx;
 	mlx_image_t		*buf;
-	mlx_texture_t	texture[5];
+	mlx_texture_t	*texture[5];
 }					t_data;
 
 typedef struct s_mv
