@@ -47,8 +47,8 @@ void	draw_map_cube(uint32_t x, uint32_t y, t_minimap	*m, int color)
 		j = x - 1;
 		while (++j < x + m->xscale)
 		{
-			if (i >= 0 && i < mini()->map->height
-				&& j >= 0 && j < mini()->map->width)
+			if (i < mini()->map->height
+				&& j < mini()->map->width)
 				mlx_put_pixel(mini()->map, j, i, color);
 		}
 	}

@@ -37,9 +37,7 @@ void	ft_floodfill(t_map_parse *map_parse, int x, int y)
 void	ft_prepare_map(t_map_parse *map_parse)
 {
 	int	map_size;
-	int	i;
 
-	i = 0;
 	map_size = ft_array_len(map_parse->map);
 	while (map_size > map_parse->lastidentline)
 	{

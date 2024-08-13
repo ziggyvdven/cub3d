@@ -73,6 +73,7 @@ int	gradient(int color, int div, int operator)
 	r = get_r(color);
 	g = get_g(color);
 	b = get_b(color);
+	a = 0;
 	if (operator == ADD && get_a(color) != 255)
 		a = get_a(color) + div;
 	if (operator == SUB && get_a(color) != 0)
